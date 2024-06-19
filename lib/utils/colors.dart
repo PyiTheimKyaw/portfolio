@@ -5,5 +5,4 @@ const Color kWhiteColor = Colors.white;
 const Color kBlackColor = Colors.black;
 
 ///App Specific
-const Color kHoveredTextColor = Color.fromRGBO(3, 255, 169, 1.0);
-
+const Color kHoveredColor = Color.fromRGBO(3, 255, 169, 0.8);
