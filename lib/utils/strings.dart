@@ -25,3 +25,9 @@ const String kTextGitHubUrl = "https://github.com/PyiTheimKyaw";
 const String kTextLinkedInUrl = "https://linkedin.com/in/pyi-theim-kyaw-2969011ab";
 const String kTextWhatAppsUrl = "Wa.me/+959403479301";
 const String kTextLineUrl = "(+66)0809683357";
+
+///Services
+const String kTextCountOne = "01";
+const String kTextCountTwo = "02";
+const String kTextCountThree = "03";
+const String kTextCountFour = "04";

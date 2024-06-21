@@ -1,0 +1,29 @@
+{
+  "status": 200,
+  "projects": [
+    {
+      "id": 1,
+      "project_name": "The Movie App",
+      "platforms": "Android,iOS",
+      "project_info": "Loreum"
+    },
+    {
+      "id": 2,
+      "project_name": "The Movie Booking App",
+      "platforms": "Android,iOS",
+      "project_info": "Loreum"
+    },
+    {
+      "id": 3,
+      "project_name": "The Library App",
+      "platforms": "Android,iOS",
+      "project_info": "Loreum"
+    },
+    {
+      "id": 4,
+      "project_name": "The Wechat Redesign App",
+      "platforms": "Android,iOS",
+      "project_info": "Loreum"
+    }
+  ]
+}

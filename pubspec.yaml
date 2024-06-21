@@ -39,6 +39,12 @@ dependencies:
   animated_text_kit: ^4.2.2
   font_awesome_flutter: ^10.7.0
   url_launcher: ^6.3.0
+  dio: ^5.4.3+1
+  flutter_bloc: ^8.1.5
+  provider: ^6.1.2
+  json_annotation: ^4.9.0
+  intl: ^0.19.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -49,7 +55,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
+  json_serializable: ^6.8.0
+  build_runner: ^2.4.9
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/jsons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
