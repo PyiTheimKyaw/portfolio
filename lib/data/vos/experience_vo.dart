@@ -5,15 +5,23 @@ part 'experience_vo.g.dart';
 @JsonSerializable()
 class ExperienceVO {
   @JsonKey(name: 'id')
-  final int id;
+  final int? id;
   @JsonKey(name: 'company_name')
-  final String companyName;
+  final String? companyName;
   @JsonKey(name: 'position')
-  final String position;
+  final String? position;
   @JsonKey(name: 'duration')
-  final String duration;
+  final String? duration;
+  @JsonKey(name: 'link')
+  final String? link;
 
-  ExperienceVO(this.id, this.companyName, this.position, this.duration);
+  ExperienceVO(
+    this.id,
+    this.companyName,
+    this.position,
+    this.duration,
+    this.link,
+  );
 
   factory ExperienceVO.fromJson(Map<String, dynamic> json) => _$ExperienceVOFromJson(json);
 

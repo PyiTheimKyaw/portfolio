@@ -24,6 +24,7 @@ class HoverButton extends StatefulWidget {
     this.iconSize = kDownloadIconSize,
     this.btnPadding = kMargin16,
     this.customImg,
+    this.btnTextFontSize = kFont20,
   });
 
   final String? btnText;
@@ -43,6 +44,7 @@ class HoverButton extends StatefulWidget {
   final double? iconSize;
   final double? btnPadding;
   final String? customImg;
+  final double? btnTextFontSize;
 
   @override
   State<HoverButton> createState() => _HoverButtonState();
@@ -101,7 +103,7 @@ class _HoverButtonState extends State<HoverButton> {
                         : _isHovered
                             ? kBlackColor
                             : widget.textUnHoveredColor,
-                    textFontSize: kFont20,
+                    textFontSize: widget.btnTextFontSize ?? 0,
                   ),
                 ),
                 Visibility(
@@ -120,17 +122,27 @@ class _HoverButtonState extends State<HoverButton> {
                 Visibility(
                   visible: widget.fontAweIcon != null,
                   replacement: (widget.customImg != null)
-                      ? Image.asset(
-                          widget.customImg ?? "",
-                          width: widget.iconSize,
-                          height: widget.iconSize,
-                          color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
+                      ? Padding(
+                          padding: EdgeInsets.only(
+                            left: widget.btnText != null ? kMargin8 : 0,
+                          ),
+                          child: Image.asset(
+                            widget.customImg ?? "",
+                            width: widget.iconSize,
+                            height: widget.iconSize,
+                            color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
+                          ),
                         )
                       : const SizedBox.shrink(),
-                  child: FaIcon(
-                    widget.fontAweIcon,
-                    color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
-                    size: widget.iconSize,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: widget.btnText != null ? kMargin8 : 0,
+                    ),
+                    child: FaIcon(
+                      widget.fontAweIcon,
+                      color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
+                      size: widget.iconSize,
+                    ),
                   ),
                 ),
               ],

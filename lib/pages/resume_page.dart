@@ -14,6 +14,7 @@ import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -506,6 +507,18 @@ class _EducationItemView extends StatelessWidget {
           const SizedBox(
             height: kMargin16,
           ),
+          HoverButton(
+            onTapBtn: () {
+              launchUrl(Uri.parse(education?.link ?? ""));
+            },
+            btnText: kTextOfficialPage,
+            btnTextFontSize: kFont16,
+            btnPadding: kMargin8,
+            fontAweIcon: FontAwesomeIcons.arrowUpRightFromSquare,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -615,6 +628,18 @@ class _ExperienceItemView extends StatelessWidget {
             textColor: kWhiteColor,
             textFontWeight: FontWeight.w600,
             textFontSize: kFont20,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
+          HoverButton(
+            onTapBtn: () {
+              launchUrl(Uri.parse(experience?.link ?? ""));
+            },
+            btnText: kTextOfficialPage,
+            btnTextFontSize: kFont16,
+            btnPadding: kMargin8,
+            fontAweIcon: FontAwesomeIcons.arrowUpRightFromSquare,
           ),
           const SizedBox(
             height: kMargin16,

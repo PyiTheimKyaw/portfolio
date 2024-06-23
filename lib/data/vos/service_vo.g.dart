@@ -7,10 +7,10 @@ part of 'service_vo.dart';
 // **************************************************************************
 
 ServiceVO _$ServiceVOFromJson(Map<String, dynamic> json) => ServiceVO(
-      (json['id'] as num).toInt(),
-      json['service_name'] as String,
-      json['description'] as String,
-      (json['languages'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['id'] as num?)?.toInt(),
+      json['service_name'] as String?,
+      json['description'] as String?,
+      (json['languages'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$ServiceVOToJson(ServiceVO instance) => <String, dynamic>{

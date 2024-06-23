@@ -193,7 +193,7 @@ class _TabletServiceItemView extends StatelessWidget {
           textFontWeight: FontWeight.bold,
         ),
         CustomizedTextView(
-          textData: service?.languages.join(" , ") ?? "",
+          textData: service?.languages?.join(" , ") ?? "",
           textFontSize: kFont16,
           textFontWeight: FontWeight.w400,
         ),
@@ -309,7 +309,7 @@ class _DesktopServiceItemView extends StatelessWidget {
           textFontWeight: FontWeight.bold,
         ),
         CustomizedTextView(
-          textData: service?.languages.join(" , ") ?? "",
+          textData: service?.languages?.join(" , ") ?? "",
           textFontSize: kFont16,
           textFontWeight: FontWeight.w400,
         ),

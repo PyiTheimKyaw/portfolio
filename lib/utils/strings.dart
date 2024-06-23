@@ -48,7 +48,6 @@ const String kTextLine = "Line";
 const String kTextEmail = "Email";
 const String kTextWhatApps = "What Apps";
 const String kTextAddress = "Address";
-
-
-
-
+const String kTextOfficialPage = "Official Page";
+const String kTextUITPageUrl = "https://www.uit.edu.mm/";
+const String kTextItpecPageUrl = "https://itpec.org/";

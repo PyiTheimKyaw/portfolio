@@ -7,10 +7,11 @@ part of 'experience_vo.dart';
 // **************************************************************************
 
 ExperienceVO _$ExperienceVOFromJson(Map<String, dynamic> json) => ExperienceVO(
-      (json['id'] as num).toInt(),
-      json['company_name'] as String,
-      json['position'] as String,
-      json['duration'] as String,
+      (json['id'] as num?)?.toInt(),
+      json['company_name'] as String?,
+      json['position'] as String?,
+      json['duration'] as String?,
+      json['link'] as String?,
     );
 
 Map<String, dynamic> _$ExperienceVOToJson(ExperienceVO instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$ExperienceVOToJson(ExperienceVO instance) =>
       'company_name': instance.companyName,
       'position': instance.position,
       'duration': instance.duration,
+      'link': instance.link,
     };
