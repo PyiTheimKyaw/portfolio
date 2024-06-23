@@ -13,6 +13,17 @@ class HoverButton extends StatefulWidget {
     this.fontAweIcon,
     this.isIconOnly = false,
     this.btnRadius = kRadius15,
+    this.textUnHoveredColor = kHoveredColor,
+    this.btnUnHoveredBorderColor = kHoveredColor,
+    this.btnUnHoveredColor,
+    this.isDense = false,
+    this.isSelected = false,
+    this.iconHoveredColor = kBlackColor,
+    this.iconUnHoveredColor = kHoveredColor,
+    this.btnHoveredColor = kHoveredColor,
+    this.iconSize = kDownloadIconSize,
+    this.btnPadding = kMargin16,
+    this.customImg,
   });
 
   final String? btnText;
@@ -21,6 +32,17 @@ class HoverButton extends StatefulWidget {
   final IconData? fontAweIcon;
   final bool? isIconOnly;
   final double btnRadius;
+  final Color? textUnHoveredColor;
+  final Color btnUnHoveredBorderColor;
+  final Color? btnUnHoveredColor;
+  final bool? isDense;
+  final bool? isSelected;
+  final Color? iconHoveredColor;
+  final Color? iconUnHoveredColor;
+  final Color? btnHoveredColor;
+  final double? iconSize;
+  final double? btnPadding;
+  final String? customImg;
 
   @override
   State<HoverButton> createState() => _HoverButtonState();
@@ -42,7 +64,8 @@ class _HoverButtonState extends State<HoverButton> {
         onExit: (event) => onEntered(false),
         cursor: SystemMouseCursors.click,
         child: AnimatedContainer(
-            padding: const EdgeInsets.all(kMargin8),
+            padding: EdgeInsets.all(widget.btnPadding ?? 0),
+            width: (widget.isDense ?? false) ? MediaQuery.of(context).size.width : null,
             decoration: BoxDecoration(
               borderRadius: (widget.isIconOnly ?? false)
                   ? null
@@ -50,9 +73,17 @@ class _HoverButtonState extends State<HoverButton> {
                       widget.btnRadius,
                     ),
               shape: (widget.isIconOnly ?? false) ? BoxShape.circle : BoxShape.rectangle,
-              color: _isHovered ? kHoveredColor : null,
+              color: (widget.isSelected ?? false)
+                  ? kHoveredColor
+                  : _isHovered
+                      ? widget.btnHoveredColor
+                      : widget.btnUnHoveredColor,
               border: Border.all(
-                color: kHoveredColor,
+                color: (widget.isSelected ?? false)
+                    ? kHoveredColor
+                    : _isHovered
+                        ? kHoveredColor
+                        : widget.btnUnHoveredBorderColor,
               ),
             ),
             duration: const Duration(milliseconds: 200),
@@ -65,7 +96,12 @@ class _HoverButtonState extends State<HoverButton> {
                   visible: widget.btnText != null,
                   child: CustomizedTextView(
                     textData: widget.btnText ?? "",
-                    textColor: _isHovered ? kBlackColor : kHoveredColor,
+                    textColor: (widget.isSelected ?? false)
+                        ? kBlackColor
+                        : _isHovered
+                            ? kBlackColor
+                            : widget.textUnHoveredColor,
+                    textFontSize: kFont20,
                   ),
                 ),
                 Visibility(
@@ -76,17 +112,25 @@ class _HoverButtonState extends State<HoverButton> {
                     ),
                     child: Icon(
                       widget.icon,
-                      color: _isHovered ? kBlackColor : kHoveredColor,
+                      color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
                       size: kDownloadIconSize,
                     ),
                   ),
                 ),
                 Visibility(
                   visible: widget.fontAweIcon != null,
+                  replacement: (widget.customImg != null)
+                      ? Image.asset(
+                          widget.customImg ?? "",
+                          width: widget.iconSize,
+                          height: widget.iconSize,
+                          color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
+                        )
+                      : const SizedBox.shrink(),
                   child: FaIcon(
                     widget.fontAweIcon,
-                    color: _isHovered ? kBlackColor : kHoveredColor,
-                    size: kDownloadIconSize,
+                    color: _isHovered ? widget.iconHoveredColor : widget.iconUnHoveredColor,
+                    size: widget.iconSize,
                   ),
                 ),
               ],

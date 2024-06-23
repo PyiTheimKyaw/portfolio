@@ -98,7 +98,7 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: (isTablet ?? false)
                 ? MediaQuery.of(context).size.width * 0.12
-                : MediaQuery.of(context).size.width * 0.2,
+                : MediaQuery.of(context).size.width * 0.15,
             vertical: kMargin24),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -135,7 +135,9 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
                   isSelected: currentIndexName == kTextServices,
                   textData: kTextServices,
                   onTapTextButton: () {
-                    context.go(RouteConstants.kRouteService);
+                    if (currentIndexName != kTextServices) {
+                      context.go(RouteConstants.kRouteService);
+                    }
                   },
                   isHovered: isHovered,
                   textColor: currentIndexName == kTextServices ? kHoveredColor : kWhiteColor,
@@ -151,7 +153,11 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextResume,
                   textData: kTextResume,
-                  onTapTextButton: () {},
+                  onTapTextButton: () {
+                    if (currentIndexName != kTextResume) {
+                      context.go(RouteConstants.kRouteResume);
+                    }
+                  },
                   isHovered: isHovered,
                   textColor: currentIndexName == kTextResume ? kHoveredColor : kWhiteColor,
                   textFontSize: kFont16,

@@ -77,7 +77,9 @@ class EndDrawerMobileView extends StatelessWidget {
                 isSelected: currentPageName == kTextServices,
                 textData: kTextServices,
                 onTapTextButton: () {
-                  context.go(RouteConstants.kRouteService);
+                  if (currentPageName != kTextServices) {
+                    context.go(RouteConstants.kRouteService);
+                  }
                 },
                 isHovered: isHovered,
                 textColor: currentPageName == kTextServices ? kHoveredColor : kWhiteColor,
@@ -93,7 +95,11 @@ class EndDrawerMobileView extends StatelessWidget {
               return TextButtonView(
                 isSelected: currentPageName == kTextResume,
                 textData: kTextResume,
-                onTapTextButton: () {},
+                onTapTextButton: () {
+                  if (currentPageName != kTextResume) {
+                    context.go(RouteConstants.kRouteResume);
+                  }
+                },
                 isHovered: isHovered,
                 textColor: currentPageName == kTextResume ? kHoveredColor : kWhiteColor,
                 textFontSize: kFont20,

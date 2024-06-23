@@ -19,7 +19,18 @@ const double kCareerHistoryPadding = 64.0;
 const double kMobileHomePageHorizontalPadding = 32.0;
 // About me section
 const double kDownloadIconSize = 16.0;
+
+/// Resume
+const double kSkillsIconSize = 40.0;
+const double kSkillsIconTabletSize = 30.0;
+
+const double kSkillsItemSize = 130.0;
+const double kSkillsItemTabletSize = 100.0;
+
+const double kCircleContainerSize = 12.0;
+
 ///Text font size
+const double kFont12 = 12.0;
 const double kFont14 = 14.0;
 const double kFont16 = 16.0;
 const double kFont18 = 18.0;

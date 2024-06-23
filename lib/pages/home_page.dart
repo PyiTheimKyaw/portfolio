@@ -119,7 +119,7 @@ class _DesktopAndTabletPersonalInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.2,
+        horizontal: MediaQuery.of(context).size.width * 0.15,
       ),
       child: const Column(
         mainAxisSize: MainAxisSize.min,
@@ -273,7 +273,7 @@ class _AboutMeTabletOrMobileView extends StatelessWidget {
               height: kMargin16,
             ),
             const CustomizedTextView(
-              textData: kTextAboutMe,
+              textData: kTextAboutMeDesc,
               textFontSize: kFont14,
               textFontWeight: FontWeight.w400,
               textHeight: 2,
@@ -291,7 +291,9 @@ class _AboutMeTabletOrMobileView extends StatelessWidget {
                 ),
                 child: HoverButton(
                   btnText: kTextDownloadCV,
-                  onTapBtn: () {},
+                  onTapBtn: () {
+                    launchUrl(Uri.parse(kTextCVUrl));
+                  },
                   icon: Icons.download,
                   btnRadius: kRadius15,
                 ),
@@ -307,28 +309,46 @@ class _AboutMeTabletOrMobileView extends StatelessWidget {
                   visible: !isMobile,
                   child: HoverButton(
                     btnText: kTextDownloadCV,
-                    onTapBtn: () {},
+                    onTapBtn: () {
+                      launchUrl(Uri.parse(kTextCVUrl));
+                    },
                     icon: Icons.download,
                     btnRadius: kRadius15,
                   ),
                 ),
                 HoverButton(
-                  onTapBtn: () {},
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(kTextGitHubUrl),
+                    );
+                  },
                   fontAweIcon: FontAwesomeIcons.github,
                   isIconOnly: true,
                 ),
                 HoverButton(
-                  onTapBtn: () {},
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(kTextLinkedInUrl),
+                    );
+                  },
                   fontAweIcon: FontAwesomeIcons.linkedinIn,
                   isIconOnly: true,
                 ),
                 HoverButton(
-                  onTapBtn: () {},
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(kTextWhatAppsUrl),
+                    );
+                  },
                   fontAweIcon: FontAwesomeIcons.whatsapp,
                   isIconOnly: true,
                 ),
                 HoverButton(
-                  onTapBtn: () {},
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(kTextLineUrl),
+                    );
+                  },
                   fontAweIcon: FontAwesomeIcons.line,
                   isIconOnly: true,
                 ),
@@ -387,7 +407,7 @@ class _AboutMeDesktopView extends StatelessWidget {
                 height: kMargin16,
               ),
               const CustomizedTextView(
-                textData: kTextAboutMe,
+                textData: kTextAboutMeDesc,
                 textFontSize: kFont14,
                 textFontWeight: FontWeight.w400,
                 textHeight: 2,
@@ -405,7 +425,7 @@ class _AboutMeDesktopView extends StatelessWidget {
                   HoverButton(
                     btnText: kTextDownloadCV,
                     onTapBtn: () {
-                      ///TODO: add cv
+                      launchUrl(Uri.parse(kTextCVUrl));
                     },
                     icon: Icons.download,
                     btnRadius: kRadius15,
