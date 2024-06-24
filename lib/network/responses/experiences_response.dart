@@ -10,7 +10,7 @@ class ExperiencesResponse {
   @JsonKey(name: 'message')
   final String message;
   @JsonKey(name: 'experiences')
-  final List<ExperienceVO> experiences;
+  final List<ExperienceVO>? experiences;
 
   ExperiencesResponse(this.status, this.message, this.experiences);
 

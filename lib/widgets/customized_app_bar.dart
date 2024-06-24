@@ -172,7 +172,11 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextProjects,
                   textData: kTextProjects,
-                  onTapTextButton: () {},
+                  onTapTextButton: () {
+                    if (currentIndexName != kTextProjects) {
+                      context.go(RouteConstants.kRouteProjects);
+                    }
+                  },
                   isHovered: isHovered,
                   textColor: currentIndexName == kTextProjects ? kHoveredColor : kWhiteColor,
                   textFontSize: kFont16,

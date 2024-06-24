@@ -10,8 +10,8 @@ ServicesResponse _$ServicesResponseFromJson(Map<String, dynamic> json) =>
     ServicesResponse(
       (json['status'] as num).toInt(),
       json['message'] as String,
-      (json['services'] as List<dynamic>)
-          .map((e) => ServiceVO.fromJson(e as Map<String, dynamic>))
+      (json['services'] as List<dynamic>?)
+          ?.map((e) => ServiceVO.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

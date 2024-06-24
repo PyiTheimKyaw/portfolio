@@ -1,22 +1,20 @@
 import 'package:portfolio/bloc/base_bloc.dart';
 import 'package:portfolio/data/models/impls/static_data_model_impl.dart';
 import 'package:portfolio/data/models/static_data_model.dart';
-import 'package:portfolio/data/vos/service_vo.dart';
+import 'package:portfolio/data/vos/project_vo.dart';
 
-class ServicePageBloc extends BaseBloc {
-  List<ServiceVO>? services;
+class ProjectsPageBloc extends BaseBloc {
+  List<ProjectVO>? projects;
   final StaticDataModel _staticDataModel = StaticDataModelImpl();
 
-  ServicePageBloc() {
-    getAbilities();
-    // getProjects();
+  ProjectsPageBloc() {
+    getProjects();
   }
 
-  Future getAbilities() {
-    return _staticDataModel.getAbilities().then((res) {
-      services = res;
+  Future getProjects() {
+    return _staticDataModel.getAllProjects().then((res) {
+      projects = res;
       notifySafely();
     });
   }
-
 }

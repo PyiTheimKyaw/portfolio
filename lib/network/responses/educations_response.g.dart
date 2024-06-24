@@ -10,8 +10,8 @@ EducationsResponse _$EducationsResponseFromJson(Map<String, dynamic> json) =>
     EducationsResponse(
       (json['status'] as num).toInt(),
       json['message'] as String,
-      (json['educations'] as List<dynamic>)
-          .map((e) => EducationVO.fromJson(e as Map<String, dynamic>))
+      (json['educations'] as List<dynamic>?)
+          ?.map((e) => EducationVO.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

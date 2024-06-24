@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/pages/projects_page.dart';
 import 'package:portfolio/pages/resume_page.dart';
 import 'package:portfolio/pages/service_page.dart';
 import 'package:portfolio/utils/route_constants.dart';
@@ -37,6 +38,17 @@ class AppRouter {
           context: context,
           state: state,
           child: const ResumePage(),
+        );
+      },
+    ),
+    GoRoute(
+      name: RouteConstants.kRouteProjects,
+      path: '/projects',
+      pageBuilder: (context, state) {
+        return buildPageWithDefaultTransition<void>(
+          context: context,
+          state: state,
+          child: const ProjectsPage(),
         );
       },
     ),

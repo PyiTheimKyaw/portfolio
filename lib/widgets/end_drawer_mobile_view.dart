@@ -114,7 +114,11 @@ class EndDrawerMobileView extends StatelessWidget {
               return TextButtonView(
                 isSelected: currentPageName == kTextProjects,
                 textData: kTextProjects,
-                onTapTextButton: () {},
+                onTapTextButton: () {
+                  if (currentPageName != kTextProjects) {
+                    context.go(RouteConstants.kRouteProjects);
+                  }
+                },
                 isHovered: isHovered,
                 textColor: currentPageName == kTextProjects ? kHoveredColor : kWhiteColor,
                 textFontSize: kFont20,

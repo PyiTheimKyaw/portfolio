@@ -8,7 +8,7 @@ class ProjectsResponse {
   @JsonKey(name: 'status')
   final int status;
   @JsonKey(name: 'projects')
-  final List<ProjectVO> projects;
+  final List<ProjectVO>? projects;
 
   ProjectsResponse(this.status, this.projects);
 

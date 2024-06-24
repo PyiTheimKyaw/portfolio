@@ -9,8 +9,8 @@ part of 'projects_response.dart';
 ProjectsResponse _$ProjectsResponseFromJson(Map<String, dynamic> json) =>
     ProjectsResponse(
       (json['status'] as num).toInt(),
-      (json['projects'] as List<dynamic>)
-          .map((e) => ProjectVO.fromJson(e as Map<String, dynamic>))
+      (json['projects'] as List<dynamic>?)
+          ?.map((e) => ProjectVO.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

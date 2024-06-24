@@ -10,7 +10,7 @@ class EducationsResponse {
   @JsonKey(name: 'message')
   final String message;
   @JsonKey(name: 'educations')
-  final List<EducationVO> educations;
+  final List<EducationVO>? educations;
 
   EducationsResponse(this.status, this.message, this.educations);
 

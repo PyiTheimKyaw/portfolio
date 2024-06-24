@@ -10,7 +10,7 @@ class ServicesResponse {
   @JsonKey(name: 'message')
   final String message;
   @JsonKey(name: 'services')
-  final List<ServiceVO> services;
+  final List<ServiceVO>? services;
 
   ServicesResponse(this.status, this.message, this.services);
 

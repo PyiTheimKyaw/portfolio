@@ -10,8 +10,8 @@ ExperiencesResponse _$ExperiencesResponseFromJson(Map<String, dynamic> json) =>
     ExperiencesResponse(
       (json['status'] as num).toInt(),
       json['message'] as String,
-      (json['experiences'] as List<dynamic>)
-          .map((e) => ExperienceVO.fromJson(e as Map<String, dynamic>))
+      (json['experiences'] as List<dynamic>?)
+          ?.map((e) => ExperienceVO.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

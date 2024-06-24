@@ -51,3 +51,7 @@ const String kTextAddress = "Address";
 const String kTextOfficialPage = "Official Page";
 const String kTextUITPageUrl = "https://www.uit.edu.mm/";
 const String kTextItpecPageUrl = "https://itpec.org/";
+
+///Projects
+const String kTextApk = "Apk";
+const String kTextRecord = "Record";

@@ -23,7 +23,7 @@ class StaticDataModelImpl extends StaticDataModel {
   }
 
   @override
-  Future<List<ServiceVO>> getAbilities() async {
+  Future<List<ServiceVO>?> getAbilities() async {
     final String response = await rootBundle.loadString('assets/jsons/services.json');
     final Map<String, dynamic> abilitiesJson = await json.decode(response);
     ServicesResponse abilitiesResponse = ServicesResponse.fromJson(abilitiesJson);
@@ -31,7 +31,7 @@ class StaticDataModelImpl extends StaticDataModel {
   }
 
   @override
-  Future<List<ProjectVO>> getAllProjects() async {
+  Future<List<ProjectVO>?> getAllProjects() async {
     final String responseString = await rootBundle.loadString('assets/jsons/projects.json');
     final Map<String, dynamic> projectsJson = await json.decode(responseString);
     ProjectsResponse projectsResponse = ProjectsResponse.fromJson(projectsJson);
@@ -39,7 +39,7 @@ class StaticDataModelImpl extends StaticDataModel {
   }
 
   @override
-  Future<List<ExperienceVO>> getAllExperiences() async {
+  Future<List<ExperienceVO>?> getAllExperiences() async {
     final String response = await rootBundle.loadString('assets/jsons/experiences.json');
     final Map<String, dynamic> experiencesJson = await json.decode(response);
     ExperiencesResponse experiencesResponse = ExperiencesResponse.fromJson(experiencesJson);
@@ -47,7 +47,7 @@ class StaticDataModelImpl extends StaticDataModel {
   }
 
   @override
-  Future<List<EducationVO>> getAllEducations() async {
+  Future<List<EducationVO>?> getAllEducations() async {
     final String response = await rootBundle.loadString('assets/jsons/educations.json');
     final Map<String, dynamic> educationsJson = await json.decode(response);
     EducationsResponse educationsResponse = EducationsResponse.fromJson(educationsJson);
