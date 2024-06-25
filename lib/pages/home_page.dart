@@ -134,7 +134,7 @@ class _DesktopPersonalInfoView extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.15,
       ),
-      child: _AboutMeDesktopView(),
+      child: const _AboutMeDesktopView(),
     );
   }
 }
