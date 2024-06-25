@@ -40,7 +40,7 @@ class CustomizedTextView extends StatelessWidget {
           fontWeight: textFontWeight,
           height: textHeight,
           letterSpacing: letterSpacing,
-          fontFamily: kFontTWK,
+          fontFamily: kFontDMS,
           decoration: (isUnderlined ?? false) ? TextDecoration.underline : null,
           decorationColor: textColor,
           decorationStyle: TextDecorationStyle.solid),
