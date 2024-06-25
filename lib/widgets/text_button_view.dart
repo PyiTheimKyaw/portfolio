@@ -10,7 +10,7 @@ class TextButtonView extends StatelessWidget {
     required this.onTapTextButton,
     this.isHovered = false,
     this.textColor,
-    this.hoveredColor = kHoveredTextColor,
+    this.hoveredColor = kHoveredColor,
     this.textFontSize = kFont20,
     this.isSelected = false,
   });

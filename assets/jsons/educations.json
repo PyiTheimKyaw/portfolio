@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "message": "success",
+  "educations": [
+    {
+      "id": 1,
+      "school_name": "University of Information Technology(UIT)",
+      "course": "Software Engineering",
+      "certificate": "Third Year",
+      "duration": "2017 - 2020",
+      "link": "https://www.uit.edu.mm/"
+    },
+    {
+      "id": 2,
+      "school_name": "Information Technology Professionals Examination Council(ITPEC)",
+      "course": "Software Engineering",
+      "certificate": "Fundamental Information Technology Engineer Examination(FE)",
+      "duration": "2023",
+      "link": "https://itpec.org/"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "status": 200,
+  "projects": [
+    {
+      "id": 1,
+      "project_name": "The Wechat Redesign App",
+      "platforms": "Flutter,Kotlin",
+      "project_info": "Undertook the WeChat clone project to enhance my skills in mobile and web application development, with a focus on real-time communication features.Aimed to replicate the core functionalities of WeChat to gain a deeper understanding of how complex, feature-rich applications are built and maintained.Explore and implement various advanced concepts , such as realtime data synchronization, multimedia handling, and user authentication providing me with hands-on experience that significantly strengthened my expertise in Flutter development.",
+      "image": "assets/images/wechat_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/We-Chat-App.git",
+      "app_url": "https://drive.google.com/file/d/17W84BjUmCyqMvFjVi0qNZwcMcb219HkV/view?usp=sharing",
+      "record_url": "https://drive.google.com/file/d/1vNAv9CUwlcSig2W2x1KVMi0avoAYth9B/view?usp=sharing"
+    },
+    {
+      "id": 2,
+      "project_name": "The Movie Booking App",
+      "platforms": "Flutter",
+      "project_info": "Developed a comprehensive movie booking app using Flutter and Kotlin, featuring authentication with Gmail and Facebook. The app allows users to browse and book movie tickets, select seats, choose snacks, and pay securely. Implemented a user-friendly interface with intuitive navigation and integrated barcode generation for ticket confirmation. This project demonstrates my proficiency in cross-platform app development and backend integration for a seamless movie booking experience.",
+      "image": "assets/images/movie_booking_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/themoviebookingapp.git",
+      "app_url": "https://drive.google.com/file/d/1J6zYlju0HAMKt66I4hPBd9gzgUp_qo_p/view?usp=sharing",
+      "record_url": "https://drive.google.com/file/d/1CIYWBvjTVUAJvzT-PQmeHRIj9G9g__-x/view?usp=sharing"
+    },
+    {
+      "id": 3,
+      "project_name": "The Library App",
+      "platforms": "Flutter",
+      "project_info": "Developed a feature-rich clone of the Google Play Books app using Flutter. The app offers a seamless user experience for reading eBooks, with features including a personalized bookshelf, intuitive navigation, adjustable text settings, bookmarks, and search functionality. Implemented efficient state management and ensured high performance across various devices. The project showcases my expertise in mobile app development, particularly in creating complex UI designs and smooth user interactions.",
+      "image": "assets/images/library_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/google_play_books_app.git",
+      "app_url": "https://drive.google.com/file/d/1z3TisTChMLCliYSSbGo9NtzNcj9NSdGX/view?usp=sharing",
+      "record_url": "https://drive.google.com/file/d/1BbvsCpkpxhQ87c3raQevzYM8Yc5GfbN4/view?usp=sharing"
+    },
+    {
+      "id": 4,
+      "project_name": "Pearl Edu Hub",
+      "platforms": "Flutter,Java Servlet,Java Spring,MySQL",
+      "project_info": "Build a site which is a moodle for efficient and user-friendly educational platform tailored for students and lecturers.Utilizing Flutter for the frontend, Java servlets for backend operations, and MySQL for database management.Aimed to facilitate seamless course management, content delivery, and communication within an academic environment.",
+      "image": "assets/images/library_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/Pearl-Edu-Hub.git",
+      "app_url": null,
+      "record_url": null
+    },
+    {
+      "id": 5,
+      "project_name": "Dreams Dictionary",
+      "platforms": "Flutter",
+      "project_info": "I have developed an app using the local language (Burmese) that serves as a comprehensive dream dictionary. The app includes various features such as an alphabetical list (from 'က' to 'အ') of dream interpretations, different types of dreams and their meanings, symbols associated with dreams, and a dictionary of dream interpretations. It is designed for those who are not yet familiar with dream symbolism, allowing them to read and understand the meanings of different dreams.",
+      "image": "assets/images/dreams_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/dreams-api.git",
+      "app_url": "https://drive.google.com/file/d/1bRD5ni-Mikq3KgS019DVlaNlRNcLPSjy/view?usp=sharing",
+      "record_url": null
+    },
+    {
+      "id": 6,
+      "project_name": "Zodiac",
+      "platforms": "Flutter",
+      "project_info": "Developed a Zodiac app using Flutter, allowing users to select their birthday and view their corresponding zodiac sign. The app features a detailed view for each zodiac sign, providing comprehensive information about personality traits, compatibility, and daily horoscopes. Implemented a user-friendly interface with smooth navigation and responsive design. This project showcases my skills in Flutter development, UI/UX design, and integrating interactive features to enhance user engagement.",
+      "image": "assets/images/zodiac_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/Zodiac.git",
+      "app_url": "https://drive.google.com/file/d/1XEE8Uf2yV4KVpgmVU_d5W2_tQiLmtegj/view?usp=sharing",
+      "record_url": null
+    }
+  ]
+}
