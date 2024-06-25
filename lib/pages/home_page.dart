@@ -49,31 +49,40 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: kMargin48,
               ),
-              const CustomizedTextView(
-                textData: kTextPortfolioAndName,
-                textFontSize: kFont18,
-                textFontWeight: FontWeight.w400,
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const CustomizedTextView(
+                      textData: kTextPortfolioAndName,
+                      textFontSize: kFont18,
+                      textFontWeight: FontWeight.w400,
+                    ),
+                    const SizedBox(
+                      height: kMargin16,
+                    ),
+                    HoverTextButton(
+                      builder: (isHovered) {
+                        return TextButtonView(
+                          textData: kTextViewSourceCode,
+                          onTapTextButton: () {
+                            launchUrl(
+                              Uri.parse(
+                                kTextPortfolioGitUrl,
+                              ),
+                            );
+                          },
+                          isHovered: isHovered,
+                          textColor: isHovered ? kHoveredColor : kWhiteColor,
+                          textFontSize: kFont14,
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: kMargin16,
-              ),
-              HoverTextButton(
-                builder: (isHovered) {
-                  return TextButtonView(
-                    textData: kTextViewSourceCode,
-                    onTapTextButton: () {
-                      launchUrl(
-                        Uri.parse(
-                          kTextPortfolioGitUrl,
-                        ),
-                      );
-                    },
-                    isHovered: isHovered,
-                    textColor: isHovered ? kHoveredColor : kWhiteColor,
-                    textFontSize: kFont14,
-                  );
-                },
-              ),
+
             ],
           ),
         ),
@@ -109,32 +118,8 @@ class _TabletOrMobilePersonalInfoView extends StatelessWidget {
         horizontal:
             (isMobile ?? false) ? MediaQuery.of(context).size.width * 0.05 : MediaQuery.of(context).size.width * 0.12,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _AboutMeTabletOrMobileView(
-            isMobile: isMobile ?? false,
-          ),
-
-          ///TODO: later need or nor
-          // const SizedBox(
-          //   height: kMargin48,
-          // ),
-          // const Row(
-          //   mainAxisSize: MainAxisSize.min,
-          //   children: [
-          //     _ProfessionalRecordTabletView(
-          //       count: kTextExpCount,
-          //       dataText: kTextExpData,
-          //     ),
-          //     _ProfessionalRecordTabletView(
-          //       count: kTextProjCount,
-          //       dataText: kTextProjData,
-          //     ),
-          //   ],
-          // ),
-        ],
+      child: _AboutMeTabletOrMobileView(
+        isMobile: isMobile ?? false,
       ),
     );
   }
@@ -149,31 +134,7 @@ class _DesktopPersonalInfoView extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.15,
       ),
-      child: const Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _AboutMeDesktopView(),
-
-          ///TODO: later need or nor
-          // SizedBox(
-          //   height: kMargin48,
-          // ),
-          // Row(
-          //   mainAxisSize: MainAxisSize.min,
-          //   children: [
-          //     _ProfessionalRecordDesktopView(
-          //       count: kTextExpCount,
-          //       dataText: kTextExpData,
-          //     ),
-          //     _ProfessionalRecordDesktopView(
-          //       count: kTextProjCount,
-          //       dataText: kTextProjData,
-          //     ),
-          //   ],
-          // )
-        ],
-      ),
+      child: const _AboutMeDesktopView(),
     );
   }
 }
