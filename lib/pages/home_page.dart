@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: kMargin24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomizedAppBar(
                 currentIndexName: kTextHome,
