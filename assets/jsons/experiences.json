@@ -1,0 +1,20 @@
+{
+  "status": 200,
+  "message": "success",
+  "experiences": [
+    {
+      "id": 1,
+      "company_name": "MM Digital Solutions",
+      "position": "Flutter Developer",
+      "duration": "July 2021 - November 2023",
+      "link": "https://mm-digital-solutions.com/"
+    },
+    {
+      "id": 2,
+      "company_name": "Infinity Global Solutions",
+      "position": "Mid-Senior Flutter Developer",
+      "duration": "December 2023 - May 2024",
+      "link": "https://www.infinityglobals.com/"
+    }
+  ]
+}

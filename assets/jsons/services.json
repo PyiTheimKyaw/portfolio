@@ -1,0 +1,44 @@
+{
+  "status": 200,
+  "message": "Success",
+  "services": [
+    {
+      "id": 1,
+      "service_name": "Android Development",
+      "description": "Develop cross-platform solutions that run smoothly on both Android and iOS. For native Android development, I leverage Kotlin to utilize its modern features and interoperability with existing Java code.I have developed 5 Android apps as part of real-world projects, and 3 of them are published on the store. The remaining 2 are still under development.",
+      "languages": [
+        "Flutter",
+        "Kotlin",
+        "Java"
+      ]
+    },
+    {
+      "id": 2,
+      "service_name": "iOS Development",
+      "description": "Develop cross-platform applications that maintain a native look and feel. The focus is on creating apps that offer seamless performance and an exceptional user experience. I pay close attention to design aesthetics and functionality, ensuring that the final product aligns perfectly with your vision and meets the high standards of the iOS platform",
+      "languages": [
+        "Flutter"
+      ]
+    },
+    {
+      "id": 3,
+      "service_name": "Web Development",
+      "description": "Utilize Flutter to create consistent and visually appealing cross-platform user interfaces. HTML/CSS is employed for crafting the front-end with attention to detail and responsiveness. For the backend, I use Java Spring/Servlet to develop powerful and scalable server-side applications. ",
+      "languages": [
+        "Flutter",
+        "Html/CSS",
+        "Java Spring/Servlet",
+        "Php"
+      ]
+    },
+    {
+      "id": 4,
+      "service_name": "UI/UX Development",
+      "description": "Use Figma for designing wireframes and prototypes, allowing for iterative feedback and refinement. Adobe tools are used to enhance the visual elements and ensure high-quality graphics.",
+      "languages": [
+        "Figma",
+        "Adobe"
+      ]
+    }
+  ]
+}
