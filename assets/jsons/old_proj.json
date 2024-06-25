@@ -33,6 +33,16 @@
     },
     {
       "id": 4,
+      "project_name": "Pearl Edu Hub",
+      "platforms": "Flutter,Java Servlet,Java Spring,MySQL",
+      "project_info": "Build a site which is a moodle for efficient and user-friendly educational platform tailored for students and lecturers.Utilizing Flutter for the frontend, Java servlets for backend operations, and MySQL for database management.Aimed to facilitate seamless course management, content delivery, and communication within an academic environment.",
+      "image": "assets/images/library_preview.png",
+      "url": "https://github.com/PyiTheimKyaw/Pearl-Edu-Hub.git",
+      "app_url": null,
+      "record_url": null
+    },
+    {
+      "id": 5,
       "project_name": "Dreams Dictionary",
       "platforms": "Flutter",
       "project_info": "I have developed an app using the local language (Burmese) that serves as a comprehensive dream dictionary. The app includes various features such as an alphabetical list (from 'က' to 'အ') of dream interpretations, different types of dreams and their meanings, symbols associated with dreams, and a dictionary of dream interpretations. It is designed for those who are not yet familiar with dream symbolism, allowing them to read and understand the meanings of different dreams.",
@@ -42,7 +52,7 @@
       "record_url": null
     },
     {
-      "id": 5,
+      "id": 6,
       "project_name": "Zodiac",
       "platforms": "Flutter",
       "project_info": "Developed a Zodiac app using Flutter, allowing users to select their birthday and view their corresponding zodiac sign. The app features a detailed view for each zodiac sign, providing comprehensive information about personality traits, compatibility, and daily horoscopes. Implemented a user-friendly interface with smooth navigation and responsive design. This project showcases my skills in Flutter development, UI/UX design, and integrating interactive features to enhance user engagement.",

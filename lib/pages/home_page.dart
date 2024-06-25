@@ -11,6 +11,8 @@ import 'package:portfolio/widgets/customized_app_bar.dart';
 import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
+import 'package:portfolio/widgets/hover_text_button.dart';
+import 'package:portfolio/widgets/text_button_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -32,7 +34,7 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: kMargin24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomizedAppBar(
                 currentIndexName: kTextHome,
@@ -41,9 +43,37 @@ class HomePage extends StatelessWidget {
                 },
               ),
               const SizedBox(
+                height: kMargin60,
+              ),
+              const _PersonalInfoSectionView(),
+              const SizedBox(
                 height: kMargin48,
               ),
-              const _PersonalInfoSectionView()
+              const CustomizedTextView(
+                textData: kTextPortfolioAndName,
+                textFontSize: kFont18,
+                textFontWeight: FontWeight.w400,
+              ),
+              const SizedBox(
+                height: kMargin16,
+              ),
+              HoverTextButton(
+                builder: (isHovered) {
+                  return TextButtonView(
+                    textData: kTextViewSourceCode,
+                    onTapTextButton: () {
+                      launchUrl(
+                        Uri.parse(
+                          kTextPortfolioGitUrl,
+                        ),
+                      );
+                    },
+                    isHovered: isHovered,
+                    textColor: isHovered ? kHoveredColor : kWhiteColor,
+                    textFontSize: kFont14,
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -62,7 +92,7 @@ class _PersonalInfoSectionView extends StatelessWidget {
         isMobile: true,
       ),
       tablet: _TabletOrMobilePersonalInfoView(),
-      desktop: _DesktopAndTabletPersonalInfoView(),
+      desktop: _DesktopPersonalInfoView(),
     );
   }
 }
@@ -86,34 +116,32 @@ class _TabletOrMobilePersonalInfoView extends StatelessWidget {
           _AboutMeTabletOrMobileView(
             isMobile: isMobile ?? false,
           ),
-          const SizedBox(
-            height: kMargin48,
-          ),
-          const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _ProfessionalRecordTabletView(
-                count: kTextExpCount,
-                dataText: kTextExpData,
-              ),
-              _ProfessionalRecordTabletView(
-                count: kTextProjCount,
-                dataText: kTextProjData,
-              ),
-              _ProfessionalRecordTabletView(
-                count: kTextExpCount,
-                dataText: kTextExpData,
-              ),
-            ],
-          ),
+
+          ///TODO: later need or nor
+          // const SizedBox(
+          //   height: kMargin48,
+          // ),
+          // const Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: [
+          //     _ProfessionalRecordTabletView(
+          //       count: kTextExpCount,
+          //       dataText: kTextExpData,
+          //     ),
+          //     _ProfessionalRecordTabletView(
+          //       count: kTextProjCount,
+          //       dataText: kTextProjData,
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
   }
 }
 
-class _DesktopAndTabletPersonalInfoView extends StatelessWidget {
-  const _DesktopAndTabletPersonalInfoView();
+class _DesktopPersonalInfoView extends StatelessWidget {
+  const _DesktopPersonalInfoView();
 
   @override
   Widget build(BuildContext context) {
@@ -126,26 +154,24 @@ class _DesktopAndTabletPersonalInfoView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _AboutMeDesktopView(),
-          SizedBox(
-            height: kMargin48,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _ProfessionalRecordDesktopView(
-                count: kTextExpCount,
-                dataText: kTextExpData,
-              ),
-              _ProfessionalRecordDesktopView(
-                count: kTextProjCount,
-                dataText: kTextProjData,
-              ),
-              _ProfessionalRecordDesktopView(
-                count: kTextExpCount,
-                dataText: kTextExpData,
-              ),
-            ],
-          )
+
+          ///TODO: later need or nor
+          // SizedBox(
+          //   height: kMargin48,
+          // ),
+          // Row(
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: [
+          //     _ProfessionalRecordDesktopView(
+          //       count: kTextExpCount,
+          //       dataText: kTextExpData,
+          //     ),
+          //     _ProfessionalRecordDesktopView(
+          //       count: kTextProjCount,
+          //       dataText: kTextProjData,
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );

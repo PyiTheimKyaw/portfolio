@@ -4,7 +4,7 @@ const String kTextHome = "Home";
 const String kTextServices = "Services";
 const String kTextProjects = "Projects";
 const String kTextResume = "Resume";
-const String kTextContact = "Contact";
+// const String kTextContact = "Contact";
 
 /// Home page
 //About section
@@ -21,17 +21,14 @@ const String kTextExpData = "Years of Experience";
 const String kTextProjCount = "24";
 const String kTextProjData = "Projects Completed";
 // const String kTextTechCount = ""
-const String kTextCVUrl = "https://drive.google.com/drive/folders/1Rcr4vt1348RLIEfm1BFsajmI2XijJvKk?usp=sharing";
+const String kTextCVUrl = "https://drive.google.com/file/d/1uSGcRkw-LpsoRdBY8DTRSPTUNPyypVNO/view?usp=sharing";
 const String kTextGitHubUrl = "https://github.com/PyiTheimKyaw";
 const String kTextLinkedInUrl = "https://linkedin.com/in/pyi-theim-kyaw-2969011ab";
-const String kTextWhatAppsUrl = "Wa.me/+959403479301";
-const String kTextLineUrl = "(+66)0809683357";
-
-///Services
-const String kTextCountOne = "01";
-const String kTextCountTwo = "02";
-const String kTextCountThree = "03";
-const String kTextCountFour = "04";
+const String kTextWhatAppsUrl = "https://Wa.me/+959403479301";
+const String kTextLineUrl = "https://line.me/ti/p/gb4VZbe5_w";
+const String kTextPortfolioAndName = "Portfolio, Pyi Theim Kyaw ,2024";
+const String kTextViewSourceCode = "View the source code ->";
+const String kTextPortfolioGitUrl ="https://github.com/PyiTheimKyaw/portfolio.git";
 
 ///Resume
 const String kTextWhyHireMe = "Why Hire Me?";

@@ -183,21 +183,21 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(
-              width: kMargin20,
-            ),
-            HoverTextButton(
-              builder: (isHovered) {
-                return TextButtonView(
-                  isSelected: currentIndexName == kTextContact,
-                  textData: kTextContact,
-                  onTapTextButton: () {},
-                  isHovered: isHovered,
-                  textColor: currentIndexName == kTextContact ? kHoveredColor : kWhiteColor,
-                  textFontSize: kFont16,
-                );
-              },
-            ),
+            // const SizedBox(
+            //   width: kMargin20,
+            // ),
+            // HoverTextButton(
+            //   builder: (isHovered) {
+            //     return TextButtonView(
+            //       isSelected: currentIndexName == kTextContact,
+            //       textData: kTextContact,
+            //       onTapTextButton: () {},
+            //       isHovered: isHovered,
+            //       textColor: currentIndexName == kTextContact ? kHoveredColor : kWhiteColor,
+            //       textFontSize: kFont16,
+            //     );
+            //   },
+            // ),
           ],
         ),
       ),

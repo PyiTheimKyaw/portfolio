@@ -233,35 +233,37 @@ class _DesktopProjectItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * (0.15),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          // Expanded(child: Container()),
-          Expanded(
-            flex: 1,
-            child: _ProjectInfoView(
-              project: project,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * (0.15),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Expanded(child: Container()),
+            Expanded(
+              flex: 1,
+              child: _ProjectInfoView(
+                project: project,
+              ),
             ),
-          ),
-          const SizedBox(
-            width: kMargin24,
-          ),
-          Expanded(
-            flex: 2,
-            child: _ProjectImageView(
-              project: project,
-              onTapBack: onTapBack,
-              onTapForward: onTapForward,
+            const SizedBox(
+              width: kMargin24,
             ),
-          ),
-          // Expanded(child: Container()),
-        ],
+            Expanded(
+              flex: 2,
+              child: _ProjectImageView(
+                project: project,
+                onTapBack: onTapBack,
+                onTapForward: onTapForward,
+              ),
+            ),
+            // Expanded(child: Container()),
+          ],
+        ),
       ),
     );
   }
@@ -399,7 +401,7 @@ class _ProjectInfoView extends StatelessWidget {
         ),
         CustomizedTextView(
           textData: project?.projectInfo ?? "",
-          textFontSize: kFont18,
+          textFontSize: kFont14,
           textFontWeight: FontWeight.w400,
           textColor: kWhiteColor.withOpacity(
             0.5,

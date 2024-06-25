@@ -125,21 +125,21 @@ class EndDrawerMobileView extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(
-            height: kMargin20,
-          ),
-          HoverTextButton(
-            builder: (isHovered) {
-              return TextButtonView(
-                isSelected: currentPageName == kTextContact,
-                textData: kTextContact,
-                onTapTextButton: () {},
-                isHovered: isHovered,
-                textColor: currentPageName == kTextContact ? kHoveredColor : kWhiteColor,
-                textFontSize: kFont20,
-              );
-            },
-          ),
+          // const SizedBox(
+          //   height: kMargin20,
+          // ),
+          // HoverTextButton(
+          //   builder: (isHovered) {
+          //     return TextButtonView(
+          //       isSelected: currentPageName == kTextContact,
+          //       textData: kTextContact,
+          //       onTapTextButton: () {},
+          //       isHovered: isHovered,
+          //       textColor: currentPageName == kTextContact ? kHoveredColor : kWhiteColor,
+          //       textFontSize: kFont20,
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
