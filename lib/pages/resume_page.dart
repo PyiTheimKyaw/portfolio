@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/bloc/resume_page_bloc.dart';
+import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
 import 'package:portfolio/data/vos/profile_vo.dart';
@@ -167,6 +168,12 @@ class _SelectedSectionView extends StatelessWidget {
             case (kTextEducation):
               {
                 return _EducationsView(
+                  isMobile: isMobile ?? false,
+                );
+              }
+            case (kTextCertificates):
+              {
+                return _CertificatesView(
                   isMobile: isMobile ?? false,
                 );
               }
@@ -413,6 +420,48 @@ class _ProfileDetailDataItemView extends StatelessWidget {
   }
 }
 
+class _CertificatesView extends StatelessWidget {
+  const _CertificatesView({required this.isMobile});
+
+  final bool isMobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      children: [
+        const CustomizedTextView(
+          textData: kTextCertificates,
+          textFontSize: kFont24,
+          textFontWeight: FontWeight.w500,
+          textColor: kWhiteColor,
+        ),
+        const SizedBox(
+          height: kMargin24,
+        ),
+        Selector<ResumePageBloc, List<CertificateVO>?>(
+          selector: (BuildContext context, bloc) => bloc.certificates,
+          builder: (BuildContext context, certificates, Widget? child) => ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: certificates?.length ?? 0,
+            itemBuilder: (context, index) {
+              return _CertificateItemView(
+                certificate: certificates?[index],
+                isMobile: isMobile,
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(
+              height: kMargin16,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _EducationsView extends StatelessWidget {
   const _EducationsView({required this.isMobile});
 
@@ -451,6 +500,90 @@ class _EducationsView extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _CertificateItemView extends StatelessWidget {
+  const _CertificateItemView({
+    this.certificate,
+    this.isMobile = false,
+  });
+
+  final CertificateVO? certificate;
+  final bool? isMobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(
+        kMargin24,
+      ),
+      decoration: BoxDecoration(
+        color: kLowPrimaryColor,
+        borderRadius: BorderRadius.circular(
+          kRadius10,
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: (isMobile ?? false) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          CustomizedTextView(
+            textData: certificate?.duration ?? "",
+            textColor: kHoveredColor,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
+          CustomizedTextView(
+            textData: certificate?.course ?? "",
+            textColor: kWhiteColor,
+            textFontWeight: FontWeight.w600,
+            textFontSize: kFont20,
+            textAlign: (isMobile ?? false) ? TextAlign.center : TextAlign.start,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
+          HoverButton(
+            onTapBtn: () {
+              launchUrl(Uri.parse(certificate?.link ?? ""));
+            },
+            btnText: kTextViewCertificate,
+            btnTextFontSize: kFont16,
+            btnPadding: kMargin8,
+            fontAweIcon: FontAwesomeIcons.arrowUpRightFromSquare,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: kCircleContainerSize,
+                height: kCircleContainerSize,
+                decoration: const BoxDecoration(shape: BoxShape.circle, color: kHoveredColor),
+              ),
+              const SizedBox(
+                width: kMargin8,
+              ),
+              Flexible(
+                child: CustomizedTextView(
+                  textData: certificate?.className ?? "",
+                  textColor: kWhiteColor.withOpacity(0.5),
+                  textFontWeight: FontWeight.w400,
+                  textFontSize: kFont12,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -845,6 +978,22 @@ class _SelectionListView extends StatelessWidget {
             onTapBtn: () {
               final bloc = Provider.of<ResumePageBloc>(context, listen: false);
               bloc.onTapSelectItem(kTextEducation);
+            },
+            btnRadius: kRadius10,
+            textUnHoveredColor: kWhiteColor,
+            btnUnHoveredBorderColor: kLowPrimaryColor,
+            btnUnHoveredColor: kLowPrimaryColor,
+            isDense: true,
+          ),
+          const SizedBox(
+            height: kMargin16,
+          ),
+          HoverButton(
+            btnText: kTextCertificates,
+            isSelected: selectedItem == kTextCertificates,
+            onTapBtn: () {
+              final bloc = Provider.of<ResumePageBloc>(context, listen: false);
+              bloc.onTapSelectItem(kTextCertificates);
             },
             btnRadius: kRadius10,
             textUnHoveredColor: kWhiteColor,
