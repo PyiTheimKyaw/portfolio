@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:portfolio/data/models/static_data_model.dart';
+import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
 import 'package:portfolio/data/vos/profile_vo.dart';
 import 'package:portfolio/data/vos/service_vo.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
+import 'package:portfolio/network/responses/certificates_response.dart';
 import 'package:portfolio/network/responses/educations_response.dart';
 import 'package:portfolio/network/responses/experiences_response.dart';
 import 'package:portfolio/network/responses/profile_response.dart';
@@ -60,5 +62,13 @@ class StaticDataModelImpl extends StaticDataModel {
     final Map<String, dynamic> profileJson = await json.decode(response);
     ProfileResponse profileResponse = ProfileResponse.fromJson(profileJson);
     return profileResponse.data;
+  }
+
+  @override
+  Future<List<CertificateVO>?> getAllCertificates() async{
+    final String response = await rootBundle.loadString('assets/jsons/certificates.json');
+    final Map<String, dynamic> certificatesJson = await json.decode(response);
+    CertificatesResponse certificatesResponse = CertificatesResponse.fromJson(certificatesJson);
+    return certificatesResponse.certificates;
   }
 }

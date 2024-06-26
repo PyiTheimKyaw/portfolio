@@ -8,7 +8,7 @@ const String kTextResume = "Resume";
 
 /// Home page
 //About section
-const String kTextGreeting = "Hello there,Welcome to my space";
+const String kTextGreeting = "Hello,Welcome to my space";
 const String kTextGreetingMyName = "I'm Pyi Theim Kyaw,";
 const String kTextFlutterDeveloper = "Flutter Developer";
 const String kTextAndroidDeveloper = "Android Developer";
@@ -21,7 +21,7 @@ const String kTextExpData = "Years of Experience";
 const String kTextProjCount = "24";
 const String kTextProjData = "Projects Completed";
 // const String kTextTechCount = ""
-const String kTextCVUrl = "https://drive.google.com/file/d/1uSGcRkw-LpsoRdBY8DTRSPTUNPyypVNO/view?usp=sharing";
+const String kTextCVUrl = "https://drive.google.com/file/d/1hJSVPTQaT7-MWuG123cfBmQjJeKpFN5N/view?usp=sharing";
 const String kTextGitHubUrl = "https://github.com/PyiTheimKyaw";
 const String kTextLinkedInUrl = "https://linkedin.com/in/pyi-theim-kyaw-2969011ab";
 const String kTextWhatAppsUrl = "https://Wa.me/+959403479301";
@@ -35,6 +35,7 @@ const String kTextWhyHireMe = "Why Hire Me?";
 const String kTextSkills = "Skills";
 const String kTextExperiences = "Experiences";
 const String kTextEducation = "Education";
+const String kTextCertificates= "Certificates";
 const String kTextAboutMe = "About Me";
 const String kTextMySkills = "My Skills";
 const String kTextMyExp = "My Experiences";
@@ -48,6 +49,7 @@ const String kTextAddress = "Address";
 const String kTextOfficialPage = "Official Page";
 const String kTextUITPageUrl = "https://www.uit.edu.mm/";
 const String kTextItpecPageUrl = "https://itpec.org/";
+const String kTextViewCertificate = "View Certificate";
 
 ///Projects
 const String kTextApk = "Apk";

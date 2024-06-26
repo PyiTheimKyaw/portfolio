@@ -1,10 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio/animations/zoom_animation.dart';
+import 'package:portfolio/animations/profile_animations.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
 import 'package:portfolio/utils/fonts.dart';
+import 'package:portfolio/utils/portfolio_images.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/widgets/customized_app_bar.dart';
@@ -82,7 +83,6 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -223,124 +223,136 @@ class _AboutMeTabletOrMobileView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const ProfileAnimations(),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const CustomizedTextView(
-              textData: kTextGreeting,
-              textFontSize: kFont24,
-              textFontWeight: FontWeight.w400,
-              textColor: kWhiteColor,
-            ),
-            const SizedBox(
-              height: kMargin16,
-            ),
-            const CustomizedTextView(
-              textData: kTextGreetingMyName,
-              textFontSize: kFont32,
-              textFontWeight: FontWeight.bold,
-            ),
-            const SizedBox(
-              height: kMargin16,
-            ),
-            DefaultTextStyle(
-              style: const TextStyle(
-                  fontSize: kFont24, fontFamily: kFontTWK, color: kHoveredColor, fontWeight: FontWeight.w600),
-              child: AnimatedTextKit(
-                totalRepeatCount: 10,
-                pause: const Duration(milliseconds: 1500),
-                animatedTexts: [
-                  TypewriterAnimatedText(kTextFlutterDeveloper),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: kMargin16,
-            ),
-            const CustomizedTextView(
-              textData: kTextAboutMeDesc,
-              textFontSize: kFont14,
-              textFontWeight: FontWeight.w400,
-              textHeight: 2,
-              letterSpacing: 2,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: kMargin16,
-            ),
-            Visibility(
-              visible: isMobile,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: kMargin16,
-                ),
-                child: HoverButton(
-                  btnText: kTextDownloadCV,
-                  onTapBtn: () {
-                    launchUrl(Uri.parse(kTextCVUrl));
-                  },
-                  icon: Icons.download,
-                  btnRadius: kRadius15,
-                ),
-              ),
-            ),
-            Wrap(
-              spacing: kMargin12,
-              runSpacing: kMargin12,
-              runAlignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Visibility(
-                  visible: !isMobile,
-                  child: HoverButton(
-                    btnText: kTextDownloadCV,
-                    onTapBtn: () {
-                      launchUrl(Uri.parse(kTextCVUrl));
-                    },
-                    icon: Icons.download,
-                    btnRadius: kRadius15,
+        (isMobile)
+            ? Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: MediaQuery.of(context).size.width * 0.3,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.black.withOpacity(0.8),
+                  border: Border.all(color: kHoveredColor),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    alignment: Alignment.bottomLeft,
+                    image: AssetImage(PortfolioImages.kMyProfileImage),
                   ),
                 ),
-                HoverButton(
-                  onTapBtn: () {
-                    launchUrl(
-                      Uri.parse(kTextGitHubUrl),
-                    );
-                  },
-                  fontAweIcon: FontAwesomeIcons.github,
-                  isIconOnly: true,
-                ),
-                HoverButton(
-                  onTapBtn: () {
-                    launchUrl(
-                      Uri.parse(kTextLinkedInUrl),
-                    );
-                  },
-                  fontAweIcon: FontAwesomeIcons.linkedinIn,
-                  isIconOnly: true,
-                ),
-                HoverButton(
-                  onTapBtn: () {
-                    launchUrl(
-                      Uri.parse(kTextWhatAppsUrl),
-                    );
-                  },
-                  fontAweIcon: FontAwesomeIcons.whatsapp,
-                  isIconOnly: true,
-                ),
-                HoverButton(
-                  onTapBtn: () {
-                    launchUrl(
-                      Uri.parse(kTextLineUrl),
-                    );
-                  },
-                  fontAweIcon: FontAwesomeIcons.line,
-                  isIconOnly: true,
-                ),
-              ],
-            )
+              )
+            : const ProfileAnimations(),
+        const SizedBox(
+          height: kMargin16,
+        ),
+        const CustomizedTextView(
+          textData: kTextGreeting,
+          textFontSize: kFont24,
+          textFontWeight: FontWeight.w400,
+          textColor: kWhiteColor,
+        ),
+        const SizedBox(
+          height: kMargin16,
+        ),
+        const CustomizedTextView(
+          textData: kTextGreetingMyName,
+          textFontSize: kFont32,
+          textFontWeight: FontWeight.bold,
+        ),
+        const SizedBox(
+          height: kMargin16,
+        ),
+        DefaultTextStyle(
+          style: const TextStyle(
+              fontSize: kFont24, fontFamily: kFontDMS, color: kHoveredColor, fontWeight: FontWeight.w600),
+          child: AnimatedTextKit(
+            totalRepeatCount: 10,
+            pause: const Duration(milliseconds: 1500),
+            animatedTexts: [
+              TypewriterAnimatedText(kTextFlutterDeveloper),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: kMargin16,
+        ),
+        const CustomizedTextView(
+          textData: kTextAboutMeDesc,
+          textFontSize: kFont14,
+          textFontWeight: FontWeight.w400,
+          textHeight: 2,
+          letterSpacing: 2,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(
+          height: kMargin16,
+        ),
+        Visibility(
+          visible: isMobile,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: kMargin16,
+            ),
+            child: HoverButton(
+              btnText: kTextDownloadCV,
+              onTapBtn: () {
+                launchUrl(Uri.parse(kTextCVUrl));
+              },
+              icon: Icons.download,
+              btnRadius: kRadius15,
+            ),
+          ),
+        ),
+        Wrap(
+          spacing: kMargin12,
+          runSpacing: kMargin12,
+          runAlignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Visibility(
+              visible: !isMobile,
+              child: HoverButton(
+                btnText: kTextDownloadCV,
+                onTapBtn: () {
+                  launchUrl(Uri.parse(kTextCVUrl));
+                },
+                icon: Icons.download,
+                btnRadius: kRadius15,
+              ),
+            ),
+            HoverButton(
+              onTapBtn: () {
+                launchUrl(
+                  Uri.parse(kTextGitHubUrl),
+                );
+              },
+              fontAweIcon: FontAwesomeIcons.github,
+              isIconOnly: true,
+            ),
+            HoverButton(
+              onTapBtn: () {
+                launchUrl(
+                  Uri.parse(kTextLinkedInUrl),
+                );
+              },
+              fontAweIcon: FontAwesomeIcons.linkedinIn,
+              isIconOnly: true,
+            ),
+            HoverButton(
+              onTapBtn: () {
+                launchUrl(
+                  Uri.parse(kTextWhatAppsUrl),
+                );
+              },
+              fontAweIcon: FontAwesomeIcons.whatsapp,
+              isIconOnly: true,
+            ),
+            HoverButton(
+              onTapBtn: () {
+                launchUrl(
+                  Uri.parse(kTextLineUrl),
+                );
+              },
+              fontAweIcon: FontAwesomeIcons.line,
+              isIconOnly: true,
+            ),
           ],
         ),
       ],
@@ -381,7 +393,7 @@ class _AboutMeDesktopView extends StatelessWidget {
               ),
               DefaultTextStyle(
                 style: const TextStyle(
-                    fontSize: kFont24, fontFamily: kFontTWK, color: kHoveredColor, fontWeight: FontWeight.w600),
+                    fontSize: kFont24, fontFamily: kFontDMS, color: kHoveredColor, fontWeight: FontWeight.w600),
                 child: AnimatedTextKit(
                   totalRepeatCount: 10,
                   pause: const Duration(milliseconds: 1500),

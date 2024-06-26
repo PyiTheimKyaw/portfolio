@@ -1,0 +1,20 @@
+{
+  "status": 200,
+  "message": "success",
+  "certificates": [
+    {
+      "id": 1,
+      "class_name": "PADC.com.mm",
+      "course": "Flutter Full Term Course",
+      "duration": "2021",
+      "link": "https://padc.mm-digital-solutions.com/#alumniByCourseDesktop?alumniId=13"
+    },
+    {
+      "id": 2,
+      "class_name": "Information Technology Professionals Examination Council(ITPEC)",
+      "course": "Fundamental Information Technology Engineer Examination(FE)",
+      "duration": "2023",
+      "link": "https://drive.google.com/file/d/1gjlfqClavM9SanFw3EwV96fojKrHST_U/view?usp=sharing"
+    }
+  ]
+}
