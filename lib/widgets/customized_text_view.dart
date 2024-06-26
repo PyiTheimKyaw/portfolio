@@ -15,6 +15,7 @@ class CustomizedTextView extends StatelessWidget {
     this.isUnderlined = false,
     this.textHeight,
     this.letterSpacing,
+    this.isSelectable=false,
   });
 
   final String textData;
@@ -25,10 +26,28 @@ class CustomizedTextView extends StatelessWidget {
   final bool? isUnderlined;
   final double? textHeight;
   final double? letterSpacing;
+  final bool? isSelectable;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return (isSelectable ?? false) ? SelectableText(
+      textData,
+      style: TextStyle(
+          fontSize: Responsive.isDesktop(context)
+              ? textFontSize
+              : Responsive.isTablet(context)
+              ? (textFontSize / 1.2)
+              : (textFontSize / 1.5),
+          color: textColor,
+          fontWeight: textFontWeight,
+          height: textHeight,
+          letterSpacing: letterSpacing,
+          fontFamily: kFontDMS,
+          decoration: (isUnderlined ?? false) ? TextDecoration.underline : null,
+          decorationColor: textColor,
+          decorationStyle: TextDecorationStyle.solid),
+      textAlign: textAlign,
+    ):Text(
       textData,
       style: TextStyle(
           fontSize: Responsive.isDesktop(context)

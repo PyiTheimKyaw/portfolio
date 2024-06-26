@@ -410,9 +410,10 @@ class _ProfileDetailDataItemView extends StatelessWidget {
         Flexible(
           child: CustomizedTextView(
             textData: dataText,
-            textFontSize: kFont18,
+            textFontSize: kFont16,
             textFontWeight: FontWeight.w400,
             textColor: kWhiteColor,
+            isSelectable: true,
           ),
         ),
       ],
