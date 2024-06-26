@@ -136,6 +136,8 @@ class _TabletAndMobileProjectsSectionView extends StatelessWidget {
                 );
               },
               isMobile: isMobile,
+              index: index,
+              totalProjCount: projects?.length ?? 0,
             );
           }),
     );
@@ -172,6 +174,8 @@ class _DesktopProjectsSectionView extends StatelessWidget {
                   curve: Curves.easeInOut,
                 );
               },
+              index: index,
+              totalProjCount: projects?.length ?? 0,
             );
           }),
     );
@@ -184,12 +188,16 @@ class _TabletAndMobileProjectItemView extends StatelessWidget {
     required this.onTapBack,
     required this.onTapForward,
     this.isMobile = false,
+    required this.index,
+    required this.totalProjCount,
   });
 
   final ProjectVO? project;
   final Function onTapBack;
   final Function onTapForward;
   final bool? isMobile;
+  final int index;
+  final int totalProjCount;
 
   @override
   Widget build(BuildContext context) {
@@ -209,6 +217,8 @@ class _TabletAndMobileProjectItemView extends StatelessWidget {
               onTapBack: onTapBack,
               onTapForward: onTapForward,
               isMobile: isMobile,
+              index: index,
+              totalProjCount: totalProjCount,
             ),
             _ProjectInfoView(
               project: project,
@@ -225,11 +235,15 @@ class _DesktopProjectItemView extends StatelessWidget {
     this.project,
     required this.onTapBack,
     required this.onTapForward,
+    required this.index,
+    required this.totalProjCount,
   });
 
   final ProjectVO? project;
   final Function onTapBack;
   final Function onTapForward;
+  final int index;
+  final int totalProjCount;
 
   @override
   Widget build(BuildContext context) {
@@ -259,6 +273,8 @@ class _DesktopProjectItemView extends StatelessWidget {
                 project: project,
                 onTapBack: onTapBack,
                 onTapForward: onTapForward,
+                index: index,
+                totalProjCount: totalProjCount,
               ),
             ),
             // Expanded(child: Container()),
@@ -275,12 +291,16 @@ class _ProjectImageView extends StatelessWidget {
     required this.onTapBack,
     required this.onTapForward,
     this.isMobile = false,
+    required this.index,
+    required this.totalProjCount,
   });
 
   final ProjectVO? project;
   final Function onTapBack;
   final Function onTapForward;
   final bool? isMobile;
+  final int index;
+  final int totalProjCount;
 
   @override
   Widget build(BuildContext context) {
@@ -295,33 +315,39 @@ class _ProjectImageView extends StatelessWidget {
             Image.asset(
               project?.image ?? "",
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: kHoveredColor,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    onTapBack();
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new),
-                  color: kBlackColor,
+            Visibility(
+              visible: index != 0,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: kHoveredColor,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      onTapBack();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    color: kBlackColor,
+                  ),
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: kHoveredColor,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    onTapForward();
-                  },
-                  icon: const Icon(Icons.arrow_forward_ios),
-                  color: kBlackColor,
+            Visibility(
+              visible: (index + 1) < totalProjCount,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: kHoveredColor,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      onTapForward();
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios),
+                    color: kBlackColor,
+                  ),
                 ),
               ),
             ),
@@ -335,31 +361,37 @@ class _ProjectImageView extends StatelessWidget {
           child: Row(
             children: [
               const Expanded(child: SizedBox.shrink()),
-              Container(
-                decoration: const BoxDecoration(
-                  color: kHoveredColor,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    onTapBack();
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new),
-                  color: kBlackColor,
+              Visibility(
+                visible: index != 0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: kHoveredColor,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      onTapBack();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    color: kBlackColor,
+                  ),
                 ),
               ),
               const SizedBox(
                 width: kMargin12,
               ),
-              Container(
-                decoration: const BoxDecoration(
-                  color: kHoveredColor,
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    onTapForward();
-                  },
-                  icon: const Icon(Icons.arrow_forward_ios),
-                  color: kBlackColor,
+              Visibility(
+                visible: (index + 1) < totalProjCount,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: kHoveredColor,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      onTapForward();
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios),
+                    color: kBlackColor,
+                  ),
                 ),
               ),
             ],
