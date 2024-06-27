@@ -114,7 +114,7 @@ class _DesktopAndTabletResumeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * ((isTablet ?? false) ? 0.12 : 0.15),
+        horizontal: MediaQuery.of(context).size.width * ((isTablet ?? false) ? 0.12 : 0.12),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

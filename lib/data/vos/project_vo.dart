@@ -16,8 +16,12 @@ class ProjectVO {
   final String? image;
   @JsonKey(name: 'url')
   final String? url;
-  @JsonKey(name: 'app_url')
-  final String? appUrl;
+  @JsonKey(name: 'android_url')
+  final String? androidUrl;
+  @JsonKey(name: 'ios_url')
+  final String? iosUrl;
+  @JsonKey(name: 'web_url')
+  final String? webUrl;
   @JsonKey(name: 'record_url')
   final String? recordUrl;
 
@@ -28,7 +32,9 @@ class ProjectVO {
     this.projectInfo,
     this.image,
     this.url,
-    this.appUrl,
+    this.androidUrl,
+    this.iosUrl,
+    this.webUrl,
     this.recordUrl,
   );
 

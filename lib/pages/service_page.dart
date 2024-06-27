@@ -222,7 +222,7 @@ class _DesktopServiceSectionView extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * (0.15),
+          horizontal: MediaQuery.of(context).size.width * (0.12),
           vertical: kMargin48,
         ),
         child: CarouselSlider.builder(

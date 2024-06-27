@@ -21,7 +21,7 @@ const String kTextExpData = "Years of Experience";
 const String kTextProjCount = "24";
 const String kTextProjData = "Projects Completed";
 // const String kTextTechCount = ""
-const String kTextCVUrl = "https://drive.google.com/file/d/1hJSVPTQaT7-MWuG123cfBmQjJeKpFN5N/view?usp=sharing";
+const String kTextCVUrl = "https://drive.google.com/file/d/1b7O5TtlUkTEiTtyx-reCSLdBEEVa9WhY/view?usp=sharing";
 const String kTextGitHubUrl = "https://github.com/PyiTheimKyaw";
 const String kTextLinkedInUrl = "https://linkedin.com/in/pyi-theim-kyaw-2969011ab";
 const String kTextWhatAppsUrl = "https://Wa.me/+959403479301";
@@ -53,4 +53,6 @@ const String kTextViewCertificate = "View Certificate";
 
 ///Projects
 const String kTextApk = "Apk";
+const String kTextWeb = "Web";
+const String kTextIos = "iOS";
 const String kTextRecord = "Record";

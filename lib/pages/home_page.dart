@@ -132,7 +132,7 @@ class _DesktopPersonalInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.15,
+        horizontal: MediaQuery.of(context).size.width * 0.12,
       ),
       child: const _AboutMeDesktopView(),
     );

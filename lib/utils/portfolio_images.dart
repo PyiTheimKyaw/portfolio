@@ -9,5 +9,7 @@ class PortfolioImages {
   static const kWeChatAppPreviewImage = "assets/images/wechat_preview.png";
   static const kLibraryAppPreviewImage = "assets/images/library_preview.png";
   static const kMovieAppPreviewImage = "assets/images/movie_booking_preview.png";
-
+  static const kPADCAppPreviewImage = "assets/images/padc_preview.png";
+  static const kDigiZayAppPreviewImage ="assets/images/digizay_preview.png";
+  static const kHealtppyAppPreviewImage = "assets/images/healtppy_preview.png";
 }
