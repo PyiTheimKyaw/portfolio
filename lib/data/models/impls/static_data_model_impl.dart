@@ -4,10 +4,12 @@ import 'package:portfolio/data/models/static_data_model.dart';
 import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
+import 'package:portfolio/data/vos/personal_info_vo.dart';
 import 'package:portfolio/data/vos/profile_vo.dart';
 import 'package:portfolio/data/vos/service_vo.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
-import 'package:portfolio/network/responses/certificates_response.dart';
+import 'package:portfolio/network/data_agents/static_data_agent.dart';
+import 'package:portfolio/network/data_agents_impls/static_data_agent_impl.dart';
 import 'package:portfolio/network/responses/educations_response.dart';
 import 'package:portfolio/network/responses/experiences_response.dart';
 import 'package:portfolio/network/responses/profile_response.dart';
@@ -23,6 +25,8 @@ class StaticDataModelImpl extends StaticDataModel {
     instance ??= StaticDataModelImpl._internal();
     return instance!;
   }
+
+  final StaticDataAgent _staticDataAgent = StaticDataAgentImpl();
 
   @override
   Future<List<ServiceVO>?> getAbilities() async {
@@ -65,10 +69,12 @@ class StaticDataModelImpl extends StaticDataModel {
   }
 
   @override
-  Future<List<CertificateVO>?> getAllCertificates() async{
-    final String response = await rootBundle.loadString('assets/jsons/certificates.json');
-    final Map<String, dynamic> certificatesJson = await json.decode(response);
-    CertificatesResponse certificatesResponse = CertificatesResponse.fromJson(certificatesJson);
-    return certificatesResponse.certificates;
+  Stream<List<CertificateVO>?> getAllCertificates() {
+    return _staticDataAgent.getAllCertificates();
+  }
+
+  @override
+  Future<PersonalInfoVO?> getPersonalInfo() {
+    return _staticDataAgent.getPersonalInfo().first;
   }
 }

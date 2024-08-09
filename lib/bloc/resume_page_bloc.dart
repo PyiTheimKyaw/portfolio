@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:portfolio/bloc/base_bloc.dart';
 import 'package:portfolio/data/models/impls/static_data_model_impl.dart';
 import 'package:portfolio/data/models/static_data_model.dart';
@@ -36,8 +38,8 @@ class ResumePageBloc extends BaseBloc {
     });
   }
 
-  Future getCertificates() {
-    return _staticDataModel.getAllCertificates().then((res) {
+  StreamSubscription<List<CertificateVO>?> getCertificates() {
+    return _staticDataModel.getAllCertificates().listen((res) {
       certificates = res;
       notifySafely();
     });
