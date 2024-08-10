@@ -2,7 +2,6 @@ import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
 import 'package:portfolio/data/vos/personal_info_vo.dart';
-import 'package:portfolio/data/vos/profile_vo.dart';
 import 'package:portfolio/data/vos/service_vo.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
 
@@ -15,9 +14,8 @@ abstract class StaticDataModel {
 
   Future<List<EducationVO>?> getAllEducations();
 
-  Future<ProfileVO?> getProfileData();
 
-  Stream<List<CertificateVO>?> getAllCertificates();
+  Future<List<CertificateVO>?> getAllCertificates();
 
   Future<PersonalInfoVO?> getPersonalInfo();
 }

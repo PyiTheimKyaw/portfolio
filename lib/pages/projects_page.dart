@@ -6,12 +6,14 @@ import 'package:portfolio/bloc/projects_page_bloc.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
+import 'package:portfolio/utils/enums.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/widgets/customized_app_bar.dart';
 import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
+import 'package:portfolio/widgets/loading_state_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,28 +26,35 @@ class ProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProjectsPageBloc(),
-      child: Scaffold(
-        key: _key,
-        backgroundColor: kPrimaryColor,
-        drawerEnableOpenDragGesture: false,
-        endDrawer: const EndDrawerMobileView(
-          currentPageName: kTextProjects,
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomizedAppBar(
-              currentIndexName: kTextProjects,
-              onTapMenu: () {
-                _key.currentState!.openEndDrawer();
-              },
+      child: Selector<ProjectsPageBloc, LoadingState>(
+        selector: (_, bloc) => bloc.getLoadingState,
+        builder: (BuildContext context, loadingState, Widget? child) =>
+            LoadingStateWidget<ProjectsPageBloc>(
+          loadingState: loadingState,
+          widgetForSuccessState: Scaffold(
+            key: _key,
+            backgroundColor: kPrimaryColor,
+            drawerEnableOpenDragGesture: false,
+            endDrawer: const EndDrawerMobileView(
+              currentPageName: kTextProjects,
             ),
-            const SizedBox(
-              height: kMargin48,
+            body: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomizedAppBar(
+                  currentIndexName: kTextProjects,
+                  onTapMenu: () {
+                    _key.currentState!.openEndDrawer();
+                  },
+                ),
+                const SizedBox(
+                  height: kMargin48,
+                ),
+                const _ProjectsListSectionView(),
+              ],
             ),
-            const _ProjectsListSectionView(),
-          ],
+          ),
         ),
       ),
     );
@@ -56,10 +65,12 @@ class _ProjectsListSectionView extends StatefulWidget {
   const _ProjectsListSectionView();
 
   @override
-  State<_ProjectsListSectionView> createState() => _ProjectsListSectionViewState();
+  State<_ProjectsListSectionView> createState() =>
+      _ProjectsListSectionViewState();
 }
 
-class _ProjectsListSectionViewState extends State<_ProjectsListSectionView> with TickerProviderStateMixin {
+class _ProjectsListSectionViewState extends State<_ProjectsListSectionView>
+    with TickerProviderStateMixin {
   late PageController _pageViewController;
 
   late TabController _tabController;
@@ -201,7 +212,8 @@ class _TabletAndMobileProjectItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * ((isMobile ?? false) ? 0.05 : 0.12),
+        horizontal: MediaQuery.of(context).size.width *
+            ((isMobile ?? false) ? 0.05 : 0.12),
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -312,12 +324,14 @@ class _ProjectImageView extends StatelessWidget {
                   return Dialog(
                     clipBehavior: Clip.antiAlias,
                     backgroundColor: Colors.transparent,
-                    insetPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
+                    insetPadding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1),
                     child: Stack(
                       children: [
                         PhotoView(
-                          backgroundDecoration: const BoxDecoration(color: Colors.transparent),
-                          imageProvider: AssetImage(project?.image ?? ""),
+                          backgroundDecoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          imageProvider: AssetImage(project?.imageUrl ?? ""),
                         ),
                         Align(
                           alignment: Alignment.topRight,
@@ -339,12 +353,26 @@ class _ProjectImageView extends StatelessWidget {
           },
           child: Visibility(
             visible: isMobile ?? false,
-            replacement: Image.asset(
-              project?.image ?? "",
+            replacement: Image.network(
+              project?.imageUrl ?? "",
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
             ),
             child: Stack(alignment: Alignment.center, children: [
-              Image.asset(
-                project?.image ?? "",
+              Image.network(
+                project?.imageUrl ?? "",
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
               Visibility(
                 visible: index != 0,

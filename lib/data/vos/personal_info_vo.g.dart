@@ -8,6 +8,14 @@ part of 'personal_info_vo.dart';
 
 PersonalInfoVO _$PersonalInfoVOFromJson(Map<String, dynamic> json) =>
     PersonalInfoVO(
+      json['name'] as String?,
+      json['nationality'] as String?,
+      json['experience'] as String?,
+      json['email'] as String?,
+      json['phone'] as String?,
+      json['line'] as String?,
+      json['what_apps'] as String?,
+      json['address'] as String?,
       json['about_me_description'] as String?,
       json['cv_url'] as String?,
       json['developer'] as String?,
@@ -23,6 +31,14 @@ PersonalInfoVO _$PersonalInfoVOFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PersonalInfoVOToJson(PersonalInfoVO instance) =>
     <String, dynamic>{
+      'name': instance.name,
+      'nationality': instance.nationality,
+      'experience': instance.experience,
+      'email': instance.email,
+      'phone': instance.phone,
+      'line': instance.line,
+      'what_apps': instance.whatApps,
+      'address': instance.address,
       'about_me_description': instance.aboutMeDesc,
       'cv_url': instance.cvUrl,
       'developer': instance.developer,

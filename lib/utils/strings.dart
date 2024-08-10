@@ -47,3 +47,7 @@ const String kTextRecord = "Record";
 ///Firebase references
 const String kFirebaseRefCertificates = "certificates";
 const String kFirebaseRefPersonalInfo = "personal_info";
+const String kFirebaseRefServices = "services";
+const String kFirebaseRefProjects = "projects";
+const String kFirebaseRefEducations = "educations";
+const String kFirebaseRefExperiences = "experiences";

@@ -9,14 +9,14 @@ class ServicePageBloc extends BaseBloc {
 
   ServicePageBloc() {
     getAbilities();
-    // getProjects();
   }
 
   Future getAbilities() {
+    setLoadingState();
     return _staticDataModel.getAbilities().then((res) {
       services = res;
       notifySafely();
+      setSuccessState();
     });
   }
-
 }

@@ -12,8 +12,8 @@ class ProjectVO {
   final String? platforms;
   @JsonKey(name: 'project_info')
   final String? projectInfo;
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: 'image_url')
+  final String? imageUrl;
   @JsonKey(name: 'url')
   final String? url;
   @JsonKey(name: 'android_url')
@@ -30,7 +30,7 @@ class ProjectVO {
     this.projectName,
     this.platforms,
     this.projectInfo,
-    this.image,
+    this.imageUrl,
     this.url,
     this.androidUrl,
     this.iosUrl,
