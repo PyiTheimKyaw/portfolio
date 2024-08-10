@@ -12,12 +12,16 @@ class ProjectVO {
   final String? platforms;
   @JsonKey(name: 'project_info')
   final String? projectInfo;
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: 'image_url')
+  final String? imageUrl;
   @JsonKey(name: 'url')
   final String? url;
-  @JsonKey(name: 'app_url')
-  final String? appUrl;
+  @JsonKey(name: 'android_url')
+  final String? androidUrl;
+  @JsonKey(name: 'ios_url')
+  final String? iosUrl;
+  @JsonKey(name: 'web_url')
+  final String? webUrl;
   @JsonKey(name: 'record_url')
   final String? recordUrl;
 
@@ -26,9 +30,11 @@ class ProjectVO {
     this.projectName,
     this.platforms,
     this.projectInfo,
-    this.image,
+    this.imageUrl,
     this.url,
-    this.appUrl,
+    this.androidUrl,
+    this.iosUrl,
+    this.webUrl,
     this.recordUrl,
   );
 

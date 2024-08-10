@@ -3,7 +3,9 @@ import 'package:portfolio/utils/portfolio_images.dart';
 import 'package:portfolio/widgets/custom_outline.dart';
 
 class ProfileAnimations extends StatefulWidget {
-  const ProfileAnimations({super.key});
+  const ProfileAnimations({super.key,required this.profileImage});
+
+  final String? profileImage;
 
   @override
   State<ProfileAnimations> createState() => _ProfileAnimationsState();
@@ -82,10 +84,12 @@ class _ProfileAnimationsState extends State<ProfileAnimations> with TickerProvid
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.black.withOpacity(0.8),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
                 alignment: Alignment.bottomLeft,
-                image: AssetImage(PortfolioImages.kMyProfileImage),
+                image: widget.profileImage != null
+                    ? NetworkImage(widget.profileImage ?? "")
+                    : const AssetImage(PortfolioImages.kMyProfileImage),
               ),
             ),
           ),

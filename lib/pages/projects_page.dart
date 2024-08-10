@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:portfolio/bloc/projects_page_bloc.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
+import 'package:portfolio/utils/enums.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/widgets/customized_app_bar.dart';
 import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
+import 'package:portfolio/widgets/loading_state_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,30 +26,34 @@ class ProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProjectsPageBloc(),
-      child: Scaffold(
-        key: _key,
-        backgroundColor: kPrimaryColor,
-        drawerEnableOpenDragGesture: false,
-        endDrawer: const EndDrawerMobileView(
-          currentPageName: kTextProjects,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(bottom: kMargin24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomizedAppBar(
-                currentIndexName: kTextProjects,
-                onTapMenu: () {
-                  _key.currentState!.openEndDrawer();
-                },
-              ),
-              const SizedBox(
-                height: kMargin48,
-              ),
-              const _ProjectsListSectionView(),
-            ],
+      child: Selector<ProjectsPageBloc, LoadingState>(
+        selector: (_, bloc) => bloc.getLoadingState,
+        builder: (BuildContext context, loadingState, Widget? child) =>
+            LoadingStateWidget<ProjectsPageBloc>(
+          loadingState: loadingState,
+          widgetForSuccessState: Scaffold(
+            key: _key,
+            backgroundColor: kPrimaryColor,
+            drawerEnableOpenDragGesture: false,
+            endDrawer: const EndDrawerMobileView(
+              currentPageName: kTextProjects,
+            ),
+            body: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomizedAppBar(
+                  currentIndexName: kTextProjects,
+                  onTapMenu: () {
+                    _key.currentState!.openEndDrawer();
+                  },
+                ),
+                const SizedBox(
+                  height: kMargin48,
+                ),
+                const _ProjectsListSectionView(),
+              ],
+            ),
           ),
         ),
       ),
@@ -58,10 +65,12 @@ class _ProjectsListSectionView extends StatefulWidget {
   const _ProjectsListSectionView();
 
   @override
-  State<_ProjectsListSectionView> createState() => _ProjectsListSectionViewState();
+  State<_ProjectsListSectionView> createState() =>
+      _ProjectsListSectionViewState();
 }
 
-class _ProjectsListSectionViewState extends State<_ProjectsListSectionView> with TickerProviderStateMixin {
+class _ProjectsListSectionViewState extends State<_ProjectsListSectionView>
+    with TickerProviderStateMixin {
   late PageController _pageViewController;
 
   late TabController _tabController;
@@ -203,7 +212,8 @@ class _TabletAndMobileProjectItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * ((isMobile ?? false) ? 0.05 : 0.12),
+        horizontal: MediaQuery.of(context).size.width *
+            ((isMobile ?? false) ? 0.05 : 0.12),
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -250,7 +260,7 @@ class _DesktopProjectItemView extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * (0.15),
+          horizontal: MediaQuery.of(context).size.width * (0.12),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -306,52 +316,102 @@ class _ProjectImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Visibility(
-          visible: isMobile ?? false,
-          replacement: Image.asset(
-            project?.image ?? "",
+        GestureDetector(
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    clipBehavior: Clip.antiAlias,
+                    backgroundColor: Colors.transparent,
+                    insetPadding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.1),
+                    child: Stack(
+                      children: [
+                        PhotoView(
+                          backgroundDecoration:
+                              const BoxDecoration(color: Colors.transparent),
+                          imageProvider: AssetImage(project?.imageUrl ?? ""),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: kMargin32),
+                            child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.close),
+                              color: Colors.red,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                });
+          },
+          child: Visibility(
+            visible: isMobile ?? false,
+            replacement: Image.network(
+              project?.imageUrl ?? "",
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+            child: Stack(alignment: Alignment.center, children: [
+              Image.network(
+                project?.imageUrl ?? "",
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+              Visibility(
+                visible: index != 0,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: kHoveredColor,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        onTapBack();
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_new),
+                      color: kBlackColor,
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: (index + 1) < totalProjCount,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: kHoveredColor,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        onTapForward();
+                      },
+                      icon: const Icon(Icons.arrow_forward_ios),
+                      color: kBlackColor,
+                    ),
+                  ),
+                ),
+              ),
+            ]),
           ),
-          child: Stack(alignment: Alignment.center, children: [
-            Image.asset(
-              project?.image ?? "",
-            ),
-            Visibility(
-              visible: index != 0,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: kHoveredColor,
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      onTapBack();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    color: kBlackColor,
-                  ),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: (index + 1) < totalProjCount,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: kHoveredColor,
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      onTapForward();
-                    },
-                    icon: const Icon(Icons.arrow_forward_ios),
-                    color: kBlackColor,
-                  ),
-                ),
-              ),
-            ),
-          ]),
         ),
         const SizedBox(
           height: kMargin16,
@@ -457,47 +517,87 @@ class _ProjectInfoView extends StatelessWidget {
         ),
         Row(
           children: [
-            HoverButton(
-              onTapBtn: () {
-                launchUrl(
-                  Uri.parse(project?.url ?? ""),
-                );
-              },
-              fontAweIcon: FontAwesomeIcons.github,
-              isIconOnly: true,
-            ),
-            const SizedBox(
-              width: kMargin8,
-            ),
             Visibility(
-              visible: project?.appUrl != null,
-              child: HoverButton(
-                onTapBtn: () {
-                  launchUrl(
-                    Uri.parse(project?.appUrl ?? ""),
-                  );
-                },
-                btnPadding: kMargin8,
-                btnText: kTextApk,
-                fontAweIcon: FontAwesomeIcons.download,
-                isIconOnly: false,
+              visible: project?.url != null,
+              child: Padding(
+                padding: const EdgeInsets.only(right: kMargin8),
+                child: HoverButton(
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(project?.url ?? ""),
+                    );
+                  },
+                  fontAweIcon: FontAwesomeIcons.github,
+                  isIconOnly: true,
+                ),
               ),
             ),
-            const SizedBox(
-              width: kMargin8,
+            Visibility(
+              visible: project?.androidUrl != null,
+              child: Padding(
+                padding: const EdgeInsets.only(right: kMargin8),
+                child: HoverButton(
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(project?.androidUrl ?? ""),
+                    );
+                  },
+                  btnPadding: kMargin8,
+                  btnText: kTextApk,
+                  fontAweIcon: FontAwesomeIcons.download,
+                  isIconOnly: false,
+                ),
+              ),
+            ),
+            Visibility(
+              visible: project?.iosUrl != null,
+              child: Padding(
+                padding: const EdgeInsets.only(right: kMargin8),
+                child: HoverButton(
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(project?.iosUrl ?? ""),
+                    );
+                  },
+                  btnPadding: kMargin8,
+                  btnText: kTextIos,
+                  fontAweIcon: FontAwesomeIcons.download,
+                  isIconOnly: false,
+                ),
+              ),
+            ),
+            Visibility(
+              visible: project?.webUrl != null,
+              child: Padding(
+                padding: const EdgeInsets.only(right: kMargin8),
+                child: HoverButton(
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(project?.webUrl ?? ""),
+                    );
+                  },
+                  btnPadding: kMargin8,
+                  btnText: kTextWeb,
+                  fontAweIcon: FontAwesomeIcons.desktop,
+                  isIconOnly: false,
+                ),
+              ),
             ),
             Visibility(
               visible: project?.recordUrl != null,
-              child: HoverButton(
-                onTapBtn: () {
-                  launchUrl(
-                    Uri.parse(project?.recordUrl ?? ""),
-                  );
-                },
-                btnPadding: kMargin8,
-                btnText: kTextRecord,
-                fontAweIcon: FontAwesomeIcons.video,
-                isIconOnly: false,
+              child: Padding(
+                padding: const EdgeInsets.only(right: kMargin8),
+                child: HoverButton(
+                  onTapBtn: () {
+                    launchUrl(
+                      Uri.parse(project?.recordUrl ?? ""),
+                    );
+                  },
+                  btnPadding: kMargin8,
+                  btnText: kTextRecord,
+                  fontAweIcon: FontAwesomeIcons.video,
+                  isIconOnly: false,
+                ),
               ),
             ),
           ],

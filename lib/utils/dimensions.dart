@@ -8,7 +8,6 @@ const double kMargin32 = 32.0;
 const double kMargin48 = 48.0;
 const double kMargin60 = 60.0;
 
-
 ///App specific
 const double kHomePageVerticalPadding = 64.0;
 const double kWebHomePageHorizontalPadding = 124.0;
@@ -17,6 +16,7 @@ const double kWebAppBarHeight = 80.0;
 const double kWebDevelopmentItemViewHeight = 280.0;
 const double kCareerHistoryPadding = 64.0;
 const double kMobileHomePageHorizontalPadding = 32.0;
+const double kLoadingAniSize = 200.0;
 // About me section
 const double kDownloadIconSize = 16.0;
 
@@ -42,4 +42,3 @@ const double kFont32 = 32.0;
 const double kRadius10 = 10.0;
 const double kRadius15 = 15.0;
 const double kRadius20 = 20.0;
-

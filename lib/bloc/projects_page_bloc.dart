@@ -12,9 +12,11 @@ class ProjectsPageBloc extends BaseBloc {
   }
 
   Future getProjects() {
+    setLoadingState();
     return _staticDataModel.getAllProjects().then((res) {
       projects = res;
       notifySafely();
+      setSuccessState();
     });
   }
 }

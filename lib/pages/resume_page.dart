@@ -4,9 +4,10 @@ import 'package:portfolio/bloc/resume_page_bloc.dart';
 import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
-import 'package:portfolio/data/vos/profile_vo.dart';
+import 'package:portfolio/data/vos/personal_info_vo.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
+import 'package:portfolio/utils/enums.dart';
 import 'package:portfolio/utils/portfolio_images.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/utils/strings.dart';
@@ -14,6 +15,7 @@ import 'package:portfolio/widgets/customized_app_bar.dart';
 import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
+import 'package:portfolio/widgets/loading_state_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,31 +28,38 @@ class ResumePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ResumePageBloc(),
-      child: Scaffold(
-        key: _key,
-        backgroundColor: kPrimaryColor,
-        drawerEnableOpenDragGesture: false,
-        endDrawer: const EndDrawerMobileView(
-          currentPageName: kTextResume,
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: kMargin24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomizedAppBar(
-                  currentIndexName: kTextResume,
-                  onTapMenu: () {
-                    _key.currentState!.openEndDrawer();
-                  },
+      child: Selector<ResumePageBloc, LoadingState>(
+        selector: (context, bloc) => bloc.getLoadingState,
+        builder: (BuildContext context, loadingState, Widget? child) =>
+            LoadingStateWidget<ResumePageBloc>(
+          loadingState: loadingState,
+          widgetForSuccessState: Scaffold(
+            key: _key,
+            backgroundColor: kPrimaryColor,
+            drawerEnableOpenDragGesture: false,
+            endDrawer: const EndDrawerMobileView(
+              currentPageName: kTextResume,
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: kMargin24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomizedAppBar(
+                      currentIndexName: kTextResume,
+                      onTapMenu: () {
+                        _key.currentState!.openEndDrawer();
+                      },
+                    ),
+                    const SizedBox(
+                      height: kMargin48,
+                    ),
+                    const ResumeSectionView(),
+                  ],
                 ),
-                const SizedBox(
-                  height: kMargin48,
-                ),
-                const ResumeSectionView(),
-              ],
+              ),
             ),
           ),
         ),
@@ -114,7 +123,8 @@ class _DesktopAndTabletResumeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * ((isTablet ?? false) ? 0.12 : 0.15),
+        horizontal: MediaQuery.of(context).size.width *
+            ((isTablet ?? false) ? 0.12 : 0.12),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -199,7 +209,8 @@ class _AboutMeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const CustomizedTextView(
           textData: kTextAboutMe,
@@ -210,87 +221,88 @@ class _AboutMeView extends StatelessWidget {
         const SizedBox(
           height: kMargin24,
         ),
-        Selector<ResumePageBloc, ProfileVO?>(
+        Selector<ResumePageBloc, PersonalInfoVO?>(
           selector: (BuildContext context, bloc) => bloc.profileData,
-          builder: (BuildContext context, profileData, Widget? child) => (isMobile)
-              ? SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextName,
-                        dataText: profileData?.name ?? "",
+          builder: (BuildContext context, profileData, Widget? child) =>
+              (isMobile)
+                  ? SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextName,
+                            dataText: profileData?.name ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextExperiences,
+                            dataText: profileData?.experience ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextNationality,
+                            dataText: profileData?.nationality ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextAddress,
+                            dataText: profileData?.address ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextPhone,
+                            dataText: profileData?.phone ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextEmail,
+                            dataText: profileData?.email ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextLine,
+                            dataText: profileData?.line ?? "",
+                          ),
+                          const SizedBox(
+                            height: kMargin16,
+                          ),
+                          _ProfileDetailDataItemView(
+                            dataLabelText: kTextWhatApps,
+                            dataText: profileData?.whatApps ?? "",
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextExperiences,
-                        dataText: profileData?.experience ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextNationality,
-                        dataText: profileData?.nationality ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextAddress,
-                        dataText: profileData?.address ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextPhone,
-                        dataText: profileData?.phone ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextEmail,
-                        dataText: profileData?.email ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextLine,
-                        dataText: profileData?.line ?? "",
-                      ),
-                      const SizedBox(
-                        height: kMargin16,
-                      ),
-                      _ProfileDetailDataItemView(
-                        dataLabelText: kTextWhatApps,
-                        dataText: profileData?.whatApps ?? "",
-                      ),
-                    ],
-                  ),
-                )
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: _ProfileDataLeftSideView(
-                        profile: profileData,
-                      ),
+                    )
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: _ProfileDataLeftSideView(
+                            profile: profileData,
+                          ),
+                        ),
+                        Expanded(
+                          child: _ProfileRightSideView(
+                            profile: profileData,
+                          ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: _ProfileRightSideView(
-                        profile: profileData,
-                      ),
-                    ),
-                  ],
-                ),
         ),
       ],
     );
@@ -302,7 +314,7 @@ class _ProfileRightSideView extends StatelessWidget {
     this.profile,
   });
 
-  final ProfileVO? profile;
+  final PersonalInfoVO? profile;
 
   @override
   Widget build(BuildContext context) {
@@ -345,7 +357,7 @@ class _ProfileDataLeftSideView extends StatelessWidget {
     this.profile,
   });
 
-  final ProfileVO? profile;
+  final PersonalInfoVO? profile;
 
   @override
   Widget build(BuildContext context) {
@@ -410,9 +422,10 @@ class _ProfileDetailDataItemView extends StatelessWidget {
         Flexible(
           child: CustomizedTextView(
             textData: dataText,
-            textFontSize: kFont18,
+            textFontSize: kFont16,
             textFontWeight: FontWeight.w400,
             textColor: kWhiteColor,
+            isSelectable: true,
           ),
         ),
       ],
@@ -429,7 +442,8 @@ class _CertificatesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const CustomizedTextView(
           textData: kTextCertificates,
@@ -442,7 +456,8 @@ class _CertificatesView extends StatelessWidget {
         ),
         Selector<ResumePageBloc, List<CertificateVO>?>(
           selector: (BuildContext context, bloc) => bloc.certificates,
-          builder: (BuildContext context, certificates, Widget? child) => ListView.separated(
+          builder: (BuildContext context, certificates, Widget? child) =>
+              ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: certificates?.length ?? 0,
@@ -471,7 +486,8 @@ class _EducationsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const CustomizedTextView(
           textData: kTextEducation,
@@ -484,7 +500,8 @@ class _EducationsView extends StatelessWidget {
         ),
         Selector<ResumePageBloc, List<EducationVO>?>(
           selector: (BuildContext context, bloc) => bloc.educations,
-          builder: (BuildContext context, educations, Widget? child) => ListView.separated(
+          builder: (BuildContext context, educations, Widget? child) =>
+              ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: educations?.length ?? 0,
@@ -527,7 +544,9 @@ class _CertificateItemView extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: (isMobile ?? false) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment: (isMobile ?? false)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CustomizedTextView(
@@ -567,7 +586,8 @@ class _CertificateItemView extends StatelessWidget {
               Container(
                 width: kCircleContainerSize,
                 height: kCircleContainerSize,
-                decoration: const BoxDecoration(shape: BoxShape.circle, color: kHoveredColor),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: kHoveredColor),
               ),
               const SizedBox(
                 width: kMargin8,
@@ -611,7 +631,9 @@ class _EducationItemView extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: (isMobile ?? false) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment: (isMobile ?? false)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CustomizedTextView(
@@ -660,7 +682,8 @@ class _EducationItemView extends StatelessWidget {
               Container(
                 width: kCircleContainerSize,
                 height: kCircleContainerSize,
-                decoration: const BoxDecoration(shape: BoxShape.circle, color: kHoveredColor),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: kHoveredColor),
               ),
               const SizedBox(
                 width: kMargin8,
@@ -690,7 +713,8 @@ class _ExperiencesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const CustomizedTextView(
           textData: kTextMyExp,
@@ -703,7 +727,8 @@ class _ExperiencesView extends StatelessWidget {
         ),
         Selector<ResumePageBloc, List<ExperienceVO>?>(
           selector: (BuildContext context, bloc) => bloc.experiences,
-          builder: (BuildContext context, experiences, Widget? child) => ListView.separated(
+          builder: (BuildContext context, experiences, Widget? child) =>
+              ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: experiences?.length ?? 0,
@@ -746,7 +771,9 @@ class _ExperienceItemView extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: (isMobile ?? false) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment: (isMobile ?? false)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CustomizedTextView(
@@ -785,7 +812,8 @@ class _ExperienceItemView extends StatelessWidget {
               Container(
                 width: kCircleContainerSize,
                 height: kCircleContainerSize,
-                decoration: const BoxDecoration(shape: BoxShape.circle, color: kHoveredColor),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: kHoveredColor),
               ),
               const SizedBox(
                 width: kMargin16,
@@ -814,7 +842,8 @@ class _SkillsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          (isMobile) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         const CustomizedTextView(
           textData: kTextMySkills,
@@ -929,7 +958,9 @@ class _SelectionListView extends StatelessWidget {
       selector: (BuildContext context, bloc) => bloc.selectedItem,
       builder: (BuildContext context, selectedItem, Widget? child) => Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: (isMobile ?? false) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+        crossAxisAlignment: (isMobile ?? false)
+            ? CrossAxisAlignment.center
+            : CrossAxisAlignment.start,
         children: [
           const CustomizedTextView(
             textData: kTextWhyHireMe,
