@@ -8,27 +8,14 @@ const String kTextResume = "Resume";
 
 /// Home page
 //About section
-const String kTextGreeting = "Hello,Welcome to my space";
-const String kTextGreetingMyName = "I'm Pyi Theim Kyaw,";
-const String kTextFlutterDeveloper = "Flutter Developer";
-const String kTextAndroidDeveloper = "Android Developer";
-const String kTextAboutMeDesc =
-    "I have 3 years of experience in mobile and web development, specializing in Flutter. My expertise includes building"
-    " responsive and user-friendly applications for both Android and iOS platforms. While my primary focus is on Flutter, I also have experience developing with Kotlin and Java.";
 const String kTextDownloadCV = "Download CV";
 const String kTextExpCount = "3";
 const String kTextExpData = "Years of Experience";
 const String kTextProjCount = "24";
 const String kTextProjData = "Projects Completed";
-// const String kTextTechCount = ""
-const String kTextCVUrl = "https://drive.google.com/file/d/1hJSVPTQaT7-MWuG123cfBmQjJeKpFN5N/view?usp=sharing";
-const String kTextGitHubUrl = "https://github.com/PyiTheimKyaw";
-const String kTextLinkedInUrl = "https://linkedin.com/in/pyi-theim-kyaw-2969011ab";
-const String kTextWhatAppsUrl = "https://Wa.me/+959403479301";
-const String kTextLineUrl = "https://line.me/ti/p/gb4VZbe5_w";
+
 const String kTextPortfolioAndName = "Portfolio, Pyi Theim Kyaw ,2024";
 const String kTextViewSourceCode = "View the source code ->";
-const String kTextPortfolioGitUrl ="https://github.com/PyiTheimKyaw/portfolio.git";
 
 ///Resume
 const String kTextWhyHireMe = "Why Hire Me?";
@@ -53,4 +40,14 @@ const String kTextViewCertificate = "View Certificate";
 
 ///Projects
 const String kTextApk = "Apk";
+const String kTextWeb = "Web";
+const String kTextIos = "iOS";
 const String kTextRecord = "Record";
+
+///Firebase references
+const String kFirebaseRefCertificates = "certificates";
+const String kFirebaseRefPersonalInfo = "personal_info";
+const String kFirebaseRefServices = "services";
+const String kFirebaseRefProjects = "projects";
+const String kFirebaseRefEducations = "educations";
+const String kFirebaseRefExperiences = "experiences";

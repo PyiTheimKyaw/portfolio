@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'package:portfolio/bloc/base_bloc.dart';
 import 'package:portfolio/data/models/impls/static_data_model_impl.dart';
 import 'package:portfolio/data/models/static_data_model.dart';
 import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
-import 'package:portfolio/data/vos/profile_vo.dart';
+import 'package:portfolio/data/vos/personal_info_vo.dart';
 import 'package:portfolio/utils/strings.dart';
 
 class ResumePageBloc extends BaseBloc {
@@ -12,41 +13,54 @@ class ResumePageBloc extends BaseBloc {
   List<ExperienceVO>? experiences;
   List<EducationVO>? educations;
   List<CertificateVO>? certificates;
-  ProfileVO? profileData;
+  PersonalInfoVO? profileData;
   final StaticDataModel _staticDataModel = StaticDataModelImpl();
 
   ResumePageBloc() {
-    getExperiences();
-    getEducations();
-    getProfileData();
-    getCertificates();
+    getAllData();
   }
 
-  Future getExperiences() {
+  Future getAllData() {
+    setLoadingState();
+    return Future.wait([
+      getExperiences(),
+      getEducations(),
+      getProfileData(),
+      getCertificates()
+    ]).then((val) {
+      setSuccessState();
+    });
+  }
+
+  Future<List<ExperienceVO>?> getExperiences() {
     return _staticDataModel.getAllExperiences().then((res) {
       experiences = res;
       notifySafely();
+      return experiences;
     });
   }
 
-  Future getEducations() {
+  Future<List<EducationVO>?> getEducations() {
     return _staticDataModel.getAllEducations().then((res) {
       educations = res;
       notifySafely();
+      return educations;
     });
   }
 
-  Future getCertificates() {
+  Future<List<CertificateVO>?> getCertificates() {
     return _staticDataModel.getAllCertificates().then((res) {
       certificates = res;
       notifySafely();
+      return certificates;
     });
   }
 
-  Future getProfileData() {
-    return _staticDataModel.getProfileData().then((res) {
+  Future<PersonalInfoVO?> getProfileData() {
+    return _staticDataModel.getPersonalInfo().then((res) {
       profileData = res;
       notifySafely();
+      return profileData;
     });
   }
 

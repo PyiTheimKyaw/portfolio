@@ -11,9 +11,11 @@ ProjectVO _$ProjectVOFromJson(Map<String, dynamic> json) => ProjectVO(
       json['project_name'] as String?,
       json['platforms'] as String?,
       json['project_info'] as String?,
-      json['image'] as String?,
+      json['image_url'] as String?,
       json['url'] as String?,
-      json['app_url'] as String?,
+      json['android_url'] as String?,
+      json['ios_url'] as String?,
+      json['web_url'] as String?,
       json['record_url'] as String?,
     );
 
@@ -22,8 +24,10 @@ Map<String, dynamic> _$ProjectVOToJson(ProjectVO instance) => <String, dynamic>{
       'project_name': instance.projectName,
       'platforms': instance.platforms,
       'project_info': instance.projectInfo,
-      'image': instance.image,
+      'image_url': instance.imageUrl,
       'url': instance.url,
-      'app_url': instance.appUrl,
+      'android_url': instance.androidUrl,
+      'ios_url': instance.iosUrl,
+      'web_url': instance.webUrl,
       'record_url': instance.recordUrl,
     };

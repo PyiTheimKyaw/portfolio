@@ -6,12 +6,14 @@ import 'package:portfolio/bloc/service_page_bloc.dart';
 import 'package:portfolio/data/vos/service_vo.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
+import 'package:portfolio/utils/enums.dart';
 import 'package:portfolio/utils/responsive.dart';
 import 'package:portfolio/utils/strings.dart';
 import 'package:portfolio/widgets/customized_app_bar.dart';
 import 'package:portfolio/widgets/customized_text_view.dart';
 import 'package:portfolio/widgets/end_drawer_mobile_view.dart';
 import 'package:portfolio/widgets/hover_button.dart';
+import 'package:portfolio/widgets/loading_state_widget.dart';
 import 'package:provider/provider.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -23,26 +25,33 @@ class ServicePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ServicePageBloc(),
-      child: Scaffold(
-        key: _key,
-        backgroundColor: kPrimaryColor,
-        drawerEnableOpenDragGesture: false,
-        endDrawer: const EndDrawerMobileView(
-          currentPageName: kTextServices,
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CustomizedAppBar(
-              currentIndexName: kTextServices,
-              onTapMenu: () {
-                _key.currentState!.openEndDrawer();
-              },
+      child: Selector<ServicePageBloc, LoadingState>(
+        selector: (_, bloc) => bloc.getLoadingState,
+        builder: (BuildContext context, loadingState, Widget? child) =>
+            LoadingStateWidget<ServicePageBloc>(
+          loadingState: loadingState,
+          widgetForSuccessState: Scaffold(
+            key: _key,
+            backgroundColor: kPrimaryColor,
+            drawerEnableOpenDragGesture: false,
+            endDrawer: const EndDrawerMobileView(
+              currentPageName: kTextServices,
             ),
-            const _ServicesSectionView(),
-          ],
+            body: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CustomizedAppBar(
+                  currentIndexName: kTextServices,
+                  onTapMenu: () {
+                    _key.currentState!.openEndDrawer();
+                  },
+                ),
+                const _ServicesSectionView(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -118,13 +127,15 @@ class _TabletServiceSectionView extends StatelessWidget {
       ),
       child: CarouselSlider.builder(
         itemCount: services?.length,
-        itemBuilder: (BuildContext context, int index, int pageViewIndex) => SingleChildScrollView(
+        itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
+            SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(
               kMargin24,
             ),
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(kRadius20), border: Border.all(color: kHoveredColor)),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(kRadius20),
+                border: Border.all(color: kHoveredColor)),
             child: _TabletServiceItemView(
               service: services?[index],
               serviceCount: index + 1,
@@ -222,12 +233,13 @@ class _DesktopServiceSectionView extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * (0.15),
+          horizontal: MediaQuery.of(context).size.width * (0.12),
           vertical: kMargin48,
         ),
         child: CarouselSlider.builder(
           itemCount: services?.length,
-          itemBuilder: (BuildContext context, int index, int pageViewIndex) => SingleChildScrollView(
+          itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
+              SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(
                 kMargin24,

@@ -98,7 +98,7 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: (isTablet ?? false)
                 ? MediaQuery.of(context).size.width * 0.12
-                : MediaQuery.of(context).size.width * 0.15,
+                : MediaQuery.of(context).size.width * 0.12,
             vertical: kMargin24),
         child: Row(
           mainAxisSize: MainAxisSize.min,

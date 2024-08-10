@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutline extends StatelessWidget {
@@ -18,7 +19,7 @@ class CustomOutline extends StatelessWidget {
     required double height,
     required EdgeInsetsGeometry padding,
   })  : _painter = _GradientPainter(
-      strokeWidth: strokeWidth, radius: radius, gradient: gradient),
+            strokeWidth: strokeWidth, radius: radius, gradient: gradient),
         _child = child,
         _width = width,
         _height = height,
@@ -47,8 +48,8 @@ class _GradientPainter extends CustomPainter {
 
   _GradientPainter(
       {required double strokeWidth,
-        required double radius,
-        required Gradient gradient})
+      required double radius,
+      required Gradient gradient})
       : _strokeWidth = strokeWidth,
         _radius = radius,
         _gradient = gradient;
@@ -72,10 +73,19 @@ class _GradientPainter extends CustomPainter {
     _paint.shader = _gradient.createShader(outerRect);
 
     // create difference between outer and inner paths and draw it
-    Path path1 = Path()..addRRect(outerRRect);
-    Path path2 = Path()..addRRect(innerRRect);
-    var path = Path.combine(PathOperation.difference, path1, path2);
-    canvas.drawPath(path, _paint);
+    // Path path1 = Path()..addRRect(outerRRect);
+    // Path path2 = Path()..addRRect(innerRRect);
+    // var path = Path.combine(PathOperation.difference, path1, path2);
+    // canvas.drawPath(path, _paint);
+    if (kIsWeb) {
+      // Alternative approach for the web
+      canvas.drawRRect(outerRRect, _paint);
+    } else {
+      Path path1 = Path()..addRRect(outerRRect);
+      Path path2 = Path()..addRRect(innerRRect);
+      var path = Path.combine(PathOperation.difference, path1, path2);
+      canvas.drawPath(path, _paint);
+    }
   }
 
   @override
