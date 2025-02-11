@@ -244,7 +244,7 @@ class _AboutMeTabletOrMobileView extends StatelessWidget {
         DefaultTextStyle(
           style: const TextStyle(
               fontSize: kFont24,
-              fontFamily: kFontDMS,
+              fontFamily: kFontPoppins,
               color: kHoveredColor,
               fontWeight: FontWeight.w600),
           child: AnimatedTextKit(
@@ -381,7 +381,7 @@ class _AboutMeDesktopView extends StatelessWidget {
               DefaultTextStyle(
                 style: const TextStyle(
                     fontSize: kFont24,
-                    fontFamily: kFontDMS,
+                    fontFamily: kFontPoppins,
                     color: kHoveredColor,
                     fontWeight: FontWeight.w600),
                 child: AnimatedTextKit(

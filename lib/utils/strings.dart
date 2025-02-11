@@ -1,7 +1,7 @@
 ///Appbar
 const String kTextHomePageAppBarLeading = "< Pyi />";
 const String kTextHome = "Home";
-const String kTextServices = "Services";
+const String kTextServices = "Skills";
 const String kTextProjects = "Projects";
 const String kTextResume = "Resume";
 // const String kTextContact = "Contact";
