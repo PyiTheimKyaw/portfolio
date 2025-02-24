@@ -331,7 +331,7 @@ class _ProjectImageView extends StatelessWidget {
                         PhotoView(
                           backgroundDecoration:
                               const BoxDecoration(color: Colors.transparent),
-                          imageProvider: AssetImage(project?.imageUrl ?? ""),
+                          imageProvider: NetworkImage(project?.imageUrl ?? ""),
                         ),
                         Align(
                           alignment: Alignment.topRight,
