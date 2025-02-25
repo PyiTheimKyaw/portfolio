@@ -3,8 +3,9 @@ import 'package:portfolio/data/vos/certificate_vo.dart';
 import 'package:portfolio/data/vos/education_vo.dart';
 import 'package:portfolio/data/vos/experience_vo.dart';
 import 'package:portfolio/data/vos/personal_info_vo.dart';
-import 'package:portfolio/data/vos/service_vo.dart';
+import 'package:portfolio/data/vos/development_vo.dart';
 import 'package:portfolio/data/vos/project_vo.dart';
+import 'package:portfolio/data/vos/skills_vo.dart';
 import 'package:portfolio/network/data_agents/static_data_agent.dart';
 import 'package:portfolio/network/data_agents_impls/static_data_agent_impl.dart';
 
@@ -21,7 +22,7 @@ class StaticDataModelImpl extends StaticDataModel {
   final StaticDataAgent _staticDataAgent = StaticDataAgentImpl();
 
   @override
-  Future<List<ServiceVO>?> getAbilities() async {
+  Future<SkillsVO> getSkills() async {
     return _staticDataAgent.getAllServices().first;
   }
 

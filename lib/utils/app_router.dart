@@ -15,7 +15,7 @@ class AppRouter {
         return buildPageWithDefaultTransition<void>(
           context: context,
           state: state,
-          child: const HomePage(),
+          child: const IndexPage(),
         );
       },
     ),

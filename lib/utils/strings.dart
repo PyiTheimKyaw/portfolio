@@ -17,6 +17,8 @@ const String kTextProjData = "Projects Completed";
 const String kTextPortfolioAndName = "Portfolio, Pyi Theim Kyaw ,2024";
 const String kTextViewSourceCode = "View the source code ->";
 
+//Skill section
+const String kTextWhatICanDo = "What I can do";
 ///Resume
 const String kTextWhyHireMe = "Why Hire Me?";
 const String kTextSkills = "Skills";
@@ -47,7 +49,7 @@ const String kTextRecord = "Record";
 ///Firebase references
 const String kFirebaseRefCertificates = "certificates";
 const String kFirebaseRefPersonalInfo = "personal_info";
-const String kFirebaseRefServices = "services";
+const String kFirebaseRefSkills = "skills";
 const String kFirebaseRefProjects = "projects";
 const String kFirebaseRefEducations = "educations";
 const String kFirebaseRefExperiences = "experiences";

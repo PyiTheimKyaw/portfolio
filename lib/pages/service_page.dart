@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:portfolio/bloc/service_page_bloc.dart';
-import 'package:portfolio/data/vos/service_vo.dart';
+import 'package:portfolio/data/vos/development_vo.dart';
 import 'package:portfolio/utils/colors.dart';
 import 'package:portfolio/utils/dimensions.dart';
 import 'package:portfolio/utils/enums.dart';
@@ -42,12 +42,12 @@ class ServicePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CustomizedAppBar(
-                  currentIndexName: kTextServices,
-                  onTapMenu: () {
-                    _key.currentState!.openEndDrawer();
-                  },
-                ),
+                // CustomizedAppBar(
+                //   currentIndexName: kTextServices,
+                //   onTapMenu: () {
+                //     _key.currentState!.openEndDrawer();
+                //   },
+                // ),
                 const _ServicesSectionView(),
               ],
             ),
@@ -63,7 +63,7 @@ class _ServicesSectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<ServicePageBloc, List<ServiceVO>?>(
+    return Selector<ServicePageBloc, List<DevelopmentVO>?>(
       selector: (BuildContext context, bloc) => bloc.services,
       shouldRebuild: (prev, next) => prev != next,
       builder: (BuildContext context, services, Widget? child) => Responsive(
@@ -89,7 +89,7 @@ class _MobileServiceSectionView extends StatelessWidget {
     this.services,
   });
 
-  final List<ServiceVO>? services;
+  final List<DevelopmentVO>? services;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +116,7 @@ class _TabletServiceSectionView extends StatelessWidget {
     this.services,
   });
 
-  final List<ServiceVO>? services;
+  final List<DevelopmentVO>? services;
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +169,7 @@ class _TabletServiceItemView extends StatelessWidget {
     required this.serviceCount,
   });
 
-  final ServiceVO? service;
+  final DevelopmentVO? service;
   final int serviceCount;
 
   @override
@@ -226,7 +226,7 @@ class _DesktopServiceSectionView extends StatelessWidget {
     this.services,
   });
 
-  final List<ServiceVO>? services;
+  final List<DevelopmentVO>? services;
 
   @override
   Widget build(BuildContext context) {
@@ -285,7 +285,7 @@ class _DesktopServiceItemView extends StatelessWidget {
     this.isMobile,
   });
 
-  final ServiceVO? service;
+  final DevelopmentVO? service;
   final int serviceCount;
   final bool? isMobile;
 

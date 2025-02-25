@@ -7,3 +7,5 @@ const Color kBlackColor = Colors.black;
 
 ///App Specific
 const Color kHoveredColor = Color.fromRGBO(3, 255, 169, 0.8);
+const Color kSkillSectionBgColor = Color.fromRGBO(50, 54, 69, 1.0);
+const Color kSillItemBgColor = Color.fromRGBO(66, 70, 87, 1.0);

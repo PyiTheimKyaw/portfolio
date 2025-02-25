@@ -126,7 +126,7 @@ class _HoverButtonState extends State<HoverButton> {
                           padding: EdgeInsets.only(
                             left: widget.btnText != null ? kMargin8 : 0,
                           ),
-                          child: Image.asset(
+                          child: Image.network(
                             widget.customImg ?? "",
                             width: widget.iconSize,
                             height: widget.iconSize,
@@ -152,8 +152,10 @@ class _HoverButtonState extends State<HoverButton> {
   }
 
   void onEntered(bool isHovered) {
-    setState(() {
-      _isHovered = isHovered;
-    });
+    if(mounted) {
+      setState(() {
+        _isHovered = isHovered;
+      });
+    }
   }
 }

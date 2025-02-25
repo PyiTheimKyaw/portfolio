@@ -42,12 +42,12 @@ class ProjectsPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomizedAppBar(
-                  currentIndexName: kTextProjects,
-                  onTapMenu: () {
-                    _key.currentState!.openEndDrawer();
-                  },
-                ),
+                // CustomizedAppBar(
+                //   currentIndexName: kTextProjects,
+                //   onTapMenu: () {
+                //     _key.currentState!.openEndDrawer();
+                //   },
+                // ),
                 const SizedBox(
                   height: kMargin48,
                 ),

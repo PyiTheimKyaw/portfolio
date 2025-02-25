@@ -14,8 +14,16 @@ class CustomizedAppBar extends StatelessWidget {
     super.key,
     required this.currentIndexName,
     required this.onTapMenu,
+    required this.onChooseIndex,
+    required this.onChooseSkill,
+    required this.onChooseResume,
+    required this.onChooseProject,
   });
 
+  final Function onChooseIndex;
+  final Function onChooseSkill;
+  final Function onChooseResume;
+  final Function onChooseProject;
   final String currentIndexName;
   final Function onTapMenu;
 
@@ -29,9 +37,17 @@ class CustomizedAppBar extends StatelessWidget {
       tablet: _DesktopAndTabletAppBarView(
         currentIndexName: currentIndexName,
         isTablet: true,
+        onChooseIndex: onChooseIndex,
+        onChooseSkill: onChooseSkill,
+        onChooseResume: onChooseResume,
+        onChooseProject: onChooseProject,
       ),
       desktop: _DesktopAndTabletAppBarView(
         currentIndexName: currentIndexName,
+        onChooseIndex: onChooseIndex,
+        onChooseSkill: onChooseSkill,
+        onChooseResume: onChooseResume,
+        onChooseProject: onChooseProject,
       ),
     );
   }
@@ -85,10 +101,18 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
   const _DesktopAndTabletAppBarView({
     required this.currentIndexName,
     this.isTablet = false,
+    required this.onChooseIndex,
+    required this.onChooseSkill,
+    required this.onChooseResume,
+    required this.onChooseProject,
   });
 
   final String currentIndexName;
   final bool? isTablet;
+  final Function onChooseIndex;
+  final Function onChooseSkill;
+  final Function onChooseResume;
+  final Function onChooseProject;
 
   @override
   Widget build(BuildContext context) {
@@ -110,14 +134,14 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
             ),
             const Spacer(),
             // const Spacer(),
-            HoverTextButton(
+            HoverWidget(
               builder: (isHovered) {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextHome,
                   textData: kTextHome,
                   onTapTextButton: () {
                     if (currentIndexName != kTextHome) {
-                      context.go(RouteConstants.kRouteHome);
+                      onChooseIndex();
                     }
                   },
                   isHovered: isHovered,
@@ -129,14 +153,15 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
             const SizedBox(
               width: kMargin20,
             ),
-            HoverTextButton(
+            HoverWidget(
               builder: (isHovered) {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextServices,
                   textData: kTextServices,
                   onTapTextButton: () {
                     if (currentIndexName != kTextServices) {
-                      context.go(RouteConstants.kRouteService);
+                      // context.go(RouteConstants.kRouteService);
+                      onChooseSkill();
                     }
                   },
                   isHovered: isHovered,
@@ -148,14 +173,14 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
             const SizedBox(
               width: kMargin20,
             ),
-            HoverTextButton(
+            HoverWidget(
               builder: (isHovered) {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextResume,
                   textData: kTextResume,
                   onTapTextButton: () {
                     if (currentIndexName != kTextResume) {
-                      context.go(RouteConstants.kRouteResume);
+                      onChooseResume();
                     }
                   },
                   isHovered: isHovered,
@@ -167,14 +192,14 @@ class _DesktopAndTabletAppBarView extends StatelessWidget {
             const SizedBox(
               width: kMargin20,
             ),
-            HoverTextButton(
+            HoverWidget(
               builder: (isHovered) {
                 return TextButtonView(
                   isSelected: currentIndexName == kTextProjects,
                   textData: kTextProjects,
                   onTapTextButton: () {
                     if (currentIndexName != kTextProjects) {
-                      context.go(RouteConstants.kRouteProjects);
+                      onChooseProject();
                     }
                   },
                   isHovered: isHovered,

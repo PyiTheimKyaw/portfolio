@@ -27,7 +27,9 @@ class _ProfileAnimationsState extends State<ProfileAnimations> with TickerProvid
         .animate(CurvedAnimation(parent: _controller, curve: const Interval(0.40, 0.75, curve: Curves.easeOut)));
     _controller.forward();
     _controller.addListener(() {
-      setState(() {});
+      if(mounted) {
+        setState(() {});
+      }
     });
     //
     _controller2 = AnimationController(

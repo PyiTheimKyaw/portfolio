@@ -12,8 +12,10 @@ class EndDrawerMobileView extends StatelessWidget {
   const EndDrawerMobileView({
     super.key,
     required this.currentPageName,
+     this.onTapSkill,
   });
 
+  final Function? onTapSkill;
   final String currentPageName;
 
   @override
@@ -52,7 +54,7 @@ class EndDrawerMobileView extends StatelessWidget {
           const SizedBox(
             height: kMargin48,
           ),
-          HoverTextButton(
+          HoverWidget(
             builder: (isHovered) {
               return TextButtonView(
                 isSelected: currentPageName == kTextHome,
@@ -71,14 +73,14 @@ class EndDrawerMobileView extends StatelessWidget {
           const SizedBox(
             height: kMargin20,
           ),
-          HoverTextButton(
+          HoverWidget(
             builder: (isHovered) {
               return TextButtonView(
                 isSelected: currentPageName == kTextServices,
                 textData: kTextServices,
                 onTapTextButton: () {
                   if (currentPageName != kTextServices) {
-                    context.go(RouteConstants.kRouteService);
+                    onTapSkill?.call();
                   }
                 },
                 isHovered: isHovered,
@@ -90,7 +92,7 @@ class EndDrawerMobileView extends StatelessWidget {
           const SizedBox(
             height: kMargin20,
           ),
-          HoverTextButton(
+          HoverWidget(
             builder: (isHovered) {
               return TextButtonView(
                 isSelected: currentPageName == kTextResume,
@@ -109,7 +111,7 @@ class EndDrawerMobileView extends StatelessWidget {
           const SizedBox(
             height: kMargin20,
           ),
-          HoverTextButton(
+          HoverWidget(
             builder: (isHovered) {
               return TextButtonView(
                 isSelected: currentPageName == kTextProjects,

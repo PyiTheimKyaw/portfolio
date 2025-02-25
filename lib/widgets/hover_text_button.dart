@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HoverTextButton extends StatefulWidget {
-  const HoverTextButton({super.key, required this.builder});
+class HoverWidget extends StatefulWidget {
+  const HoverWidget({super.key, required this.builder});
 
   final Widget Function(bool isHovered) builder;
 
   @override
-  State<HoverTextButton> createState() => _HoverTextButtonState();
+  State<HoverWidget> createState() => _HoverWidgetState();
 }
 
-class _HoverTextButtonState extends State<HoverTextButton> {
+class _HoverWidgetState extends State<HoverWidget> {
   bool _isHovered = false;
 
   @override
@@ -28,8 +28,10 @@ class _HoverTextButtonState extends State<HoverTextButton> {
   }
 
   void onEntered(bool isHovered) {
-    setState(() {
-      _isHovered = isHovered;
-    });
+    if(mounted) {
+      setState(() {
+        _isHovered = isHovered;
+      });
+    }
   }
 }

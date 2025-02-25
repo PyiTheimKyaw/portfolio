@@ -1,10 +1,10 @@
 import 'package:portfolio/bloc/base_bloc.dart';
 import 'package:portfolio/data/models/impls/static_data_model_impl.dart';
 import 'package:portfolio/data/models/static_data_model.dart';
-import 'package:portfolio/data/vos/service_vo.dart';
+import 'package:portfolio/data/vos/development_vo.dart';
 
 class ServicePageBloc extends BaseBloc {
-  List<ServiceVO>? services;
+  List<DevelopmentVO>? services;
   final StaticDataModel _staticDataModel = StaticDataModelImpl();
 
   ServicePageBloc() {
@@ -13,8 +13,8 @@ class ServicePageBloc extends BaseBloc {
 
   Future getAbilities() {
     setLoadingState();
-    return _staticDataModel.getAbilities().then((res) {
-      services = res;
+    return _staticDataModel.getSkills().then((res) {
+      // services = res;
       notifySafely();
       setSuccessState();
     });
